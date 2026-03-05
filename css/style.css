@@ -1,0 +1,4711 @@
+/* =========================================================
+   COCADA CLICKER - REFACTORED DESIGN SYSTEM
+   Modern, Clean & Tropical Frontend
+   ========================================================= */
+
+@font-face {
+  font-family: "PublicPixel";
+  src:
+    url("../assets/fonts/PublicPixel.woff2") format("woff2"),
+    url("../assets/fonts/PublicPixel.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* === COLOR PALETTE === */
+  --bg: #0a1929;
+  --bg-light: #0f2335;
+  --card: #1a3a4d;
+  --card-light: #244a60;
+  --card-dark: #0f2f42;
+
+  /* === TEXT === */
+  --text: #fef5e7;
+  --text-secondary: #d4e8f0;
+  --muted: #8fb3c7;
+
+  /* === ACCENTS === */
+  --primary: #ff6b5b;
+  --primary-light: #ffb347;
+  --accent: #1dd1a1;
+  --danger: #ff5252;
+
+  /* === BORDERS === */
+  --line: #2d5f7a;
+  --line-light: #3d7a99;
+
+  /* === SPACING & SIZING === */
+  --radius: 12px;
+  --radius-lg: 16px;
+  --gap: 12px;
+  --gap-lg: 16px;
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.55);
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.35);
+  --font-pixel: "PublicPixel", Tahoma, Arial, sans-serif;
+
+  /* === FLAVOR MODAL (WOOD/PARCHMENT) === */
+  --flavor-backdrop: color-mix(in srgb, var(--bg) 82%, transparent);
+  --flavor-panel-border: color-mix(in srgb, var(--primary-light) 58%, var(--bg));
+  --flavor-paper-top: var(--text);
+  --flavor-paper-bottom: color-mix(in srgb, var(--text) 84%, var(--primary-light));
+  --flavor-panel-bg: linear-gradient(180deg, var(--flavor-paper-top), var(--flavor-paper-bottom));
+  --flavor-panel-shadow: color-mix(in srgb, var(--bg) 76%, var(--danger));
+  --flavor-header-bg: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--primary) 45%, var(--bg)),
+    color-mix(in srgb, var(--primary) 24%, var(--bg))
+  );
+  --flavor-title: var(--text);
+  --flavor-title-shadow: var(--bg);
+
+  --flavor-lead-border: color-mix(in srgb, var(--primary-light) 56%, var(--bg));
+  --flavor-lead-bg: linear-gradient(
+    180deg,
+    var(--text),
+    color-mix(in srgb, var(--text) 88%, var(--primary-light))
+  );
+  --flavor-lead-text: var(--bg);
+  --flavor-lead-strong: var(--danger);
+
+  --flavor-card-border: color-mix(in srgb, var(--primary-light) 56%, var(--bg));
+  --flavor-card-bg: linear-gradient(
+    180deg,
+    var(--text),
+    color-mix(in srgb, var(--text) 86%, var(--primary-light))
+  );
+  --flavor-card-shadow: color-mix(in srgb, var(--bg) 72%, var(--primary));
+  --flavor-title-chip-border: color-mix(in srgb, var(--primary) 42%, var(--bg));
+  --flavor-title-chip-bg: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--primary-light) 72%, var(--primary)),
+    color-mix(in srgb, var(--primary-light) 46%, var(--primary))
+  );
+
+  --flavor-coco-border: color-mix(in srgb, var(--accent) 70%, var(--bg));
+  --flavor-coco-bg: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--accent) 85%, var(--text)),
+    color-mix(in srgb, var(--accent) 90%, var(--card-dark))
+  );
+  --flavor-choco-border: color-mix(in srgb, var(--danger) 66%, var(--bg));
+  --flavor-choco-bg: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--danger) 72%, var(--primary)),
+    color-mix(in srgb, var(--danger) 82%, var(--card-dark))
+  );
+  --flavor-doce-border: color-mix(in srgb, var(--primary-light) 72%, var(--bg));
+  --flavor-doce-bg: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--primary-light) 88%, var(--text)),
+    color-mix(in srgb, var(--primary-light) 88%, var(--primary))
+  );
+  --flavor-doce-text: var(--bg);
+  --flavor-doce-text-shadow: color-mix(in srgb, var(--text) 80%, var(--primary-light));
+
+  --flavor-selected-border: color-mix(in srgb, var(--primary) 54%, var(--bg));
+  --flavor-selected-bg: color-mix(in srgb, var(--text) 94%, var(--primary-light));
+  --flavor-selected-inner: color-mix(in srgb, var(--primary-light) 56%, var(--text));
+
+  --flavor-icon-border: color-mix(in srgb, var(--primary) 46%, var(--bg));
+  --flavor-icon-bg: color-mix(in srgb, var(--primary-light) 26%, var(--text));
+  --flavor-icon-inner: var(--text);
+  --flavor-icon-selected-border: color-mix(in srgb, var(--primary) 58%, var(--bg));
+  --flavor-icon-selected-bg: color-mix(in srgb, var(--primary-light) 34%, var(--text));
+
+  --flavor-buff-positive: var(--accent);
+  --flavor-buff-positive-shadow: color-mix(in srgb, var(--accent) 55%, var(--bg));
+  --flavor-buff-negative: var(--danger);
+  --flavor-buff-negative-shadow: color-mix(in srgb, var(--danger) 55%, var(--bg));
+
+  --flavor-select-border: color-mix(in srgb, var(--primary-light) 62%, var(--bg));
+  --flavor-select-bg: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--primary-light) 88%, var(--text)),
+    color-mix(in srgb, var(--primary-light) 72%, var(--primary))
+  );
+  --flavor-select-text: var(--bg);
+  --flavor-select-text-shadow: var(--text);
+  --flavor-select-shadow: color-mix(in srgb, var(--bg) 74%, var(--primary));
+  --flavor-select-hover-bg: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--primary-light) 92%, var(--text)),
+    color-mix(in srgb, var(--primary-light) 78%, var(--primary))
+  );
+  --flavor-select-active-border: color-mix(in srgb, var(--primary) 62%, var(--bg));
+  --flavor-select-active-bg: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--primary-light) 82%, var(--primary)),
+    color-mix(in srgb, var(--primary-light) 62%, var(--primary))
+  );
+
+  --flavor-preview-title: color-mix(in srgb, var(--primary) 46%, var(--bg));
+  --flavor-preview-card-bg: var(--text);
+  --flavor-preview-card-border: color-mix(in srgb, var(--primary-light) 50%, var(--bg));
+  --flavor-preview-label: color-mix(in srgb, var(--bg) 56%, var(--primary));
+  --flavor-preview-value: color-mix(in srgb, var(--primary) 46%, var(--bg));
+
+  --flavor-action-border: color-mix(in srgb, var(--primary) 54%, var(--bg));
+  --flavor-action-bg: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--primary-light) 50%, var(--text)),
+    color-mix(in srgb, var(--primary) 44%, var(--primary-light))
+  );
+  --flavor-action-text: var(--bg);
+  --flavor-action-shadow: color-mix(in srgb, var(--bg) 72%, var(--primary));
+
+  --flavor-confirm-border: color-mix(in srgb, var(--accent) 72%, var(--bg));
+  --flavor-confirm-bg: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--accent) 90%, var(--text)),
+    color-mix(in srgb, var(--accent) 86%, var(--card-dark))
+  );
+  --flavor-confirm-text: var(--text);
+  --flavor-confirm-shadow-text: color-mix(in srgb, var(--accent) 55%, var(--bg));
+
+  --flavor-confirm-disabled-border: color-mix(in srgb, var(--primary) 40%, var(--bg));
+  --flavor-confirm-disabled-bg: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--primary-light) 42%, var(--text)),
+    color-mix(in srgb, var(--primary) 26%, var(--primary-light))
+  );
+  --flavor-confirm-disabled-text: var(--text-secondary);
+
+  --flavor-cancel-border: color-mix(in srgb, var(--danger) 74%, var(--bg));
+  --flavor-cancel-bg: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--danger) 82%, var(--text)),
+    color-mix(in srgb, var(--danger) 86%, var(--card-dark))
+  );
+  --flavor-cancel-text: var(--text);
+  --flavor-cancel-shadow-text: color-mix(in srgb, var(--danger) 55%, var(--bg));
+}
+
+/* =========================================================
+   RESET & BASE STYLES
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-pixel);
+  background-color: #0a1b2c;
+  color: var(--text);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+.beach-tilemap-bg {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  image-rendering: pixelated;
+}
+
+.app {
+  position: relative;
+  z-index: 1;
+}
+
+button,
+input,
+textarea,
+select,
+option {
+  font-family: var(--font-pixel);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: 700;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* =========================================================
+   LAYOUT
+   ========================================================= */
+
+.app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: var(--gap-lg);
+  align-items: start;
+}
+
+.leftCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-lg);
+}
+
+.rightCol {
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================================================
+   HEADER / TOPO
+   ========================================================= */
+
+.top {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 120;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  backdrop-filter: none;
+}
+
+.top > div:first-child {
+  flex: 1;
+}
+
+.subtitle {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.meta {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+
+.save-buttons {
+  position: relative;
+  z-index: 130;
+}
+
+.btn-options {
+  min-width: 98px;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 0;
+  border: 2px solid #2f5e7b;
+  background:
+    repeating-linear-gradient(90deg, #74b8e6 0 6px, #68abd9 6px 12px),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.16) 0 1px, rgba(255, 255, 255, 0) 1px 4px);
+  color: #f7fbff;
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 0 #1b3b51;
+  box-shadow:
+    2px 2px 0 #173447,
+    4px 4px 0 rgba(8, 17, 24, 0.35);
+}
+
+.btn-options:hover:not(:disabled) {
+  background:
+    repeating-linear-gradient(90deg, #80c4ef 0 6px, #72b7e3 6px 12px),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.2) 0 1px, rgba(255, 255, 255, 0) 1px 4px);
+  transform: translate(1px, 1px);
+  box-shadow:
+    1px 1px 0 #173447,
+    2px 2px 0 rgba(8, 17, 24, 0.35);
+}
+
+.btn-options:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+.btn-options:focus-visible {
+  outline: 2px solid #ffe58c;
+  outline-offset: 2px;
+}
+
+.ui-inline-icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.lootbox-btn .ui-inline-icon-wrap,
+.close-btn .ui-inline-icon-wrap,
+.flavorActions .ui-inline-icon-wrap,
+.flavorSelectBtn .ui-inline-icon-wrap,
+.player-stats-footer .ui-inline-icon-wrap {
+  width: 100%;
+}
+
+.ui-inline-icon {
+  width: 14px;
+  height: 14px;
+  image-rendering: pixelated;
+  flex-shrink: 0;
+}
+
+.save-options-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 190px;
+  padding: 8px;
+  border-radius: 0;
+  border: 2px solid #2f5e7b;
+  background:
+    repeating-linear-gradient(90deg, #17445d 0 8px, #123a52 8px 16px),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.08) 0 1px, rgba(255, 255, 255, 0) 1px 4px);
+  box-shadow:
+    3px 3px 0 #0f2838,
+    6px 6px 0 rgba(7, 14, 20, 0.35);
+  z-index: 40;
+}
+
+.save-options-menu .options-section {
+  border: 2px solid #2b5670;
+  background:
+    repeating-linear-gradient(90deg, #12384e 0 8px, #103245 8px 16px),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.05) 0 1px, rgba(255, 255, 255, 0) 1px 4px);
+  padding: 6px;
+}
+
+.save-options-menu .options-section-title {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  color: #a6d3ef;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 6px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #2b5670;
+  text-shadow: 1px 1px 0 #0d2838;
+}
+
+.save-options-menu .options-section-items {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.save-options-menu .options-section-status {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 2px solid #2b5670;
+}
+
+.save-options-menu .save-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 28px;
+  padding: 6px 8px;
+  border: 2px solid #315f7c;
+  border-radius: 0;
+  background:
+    repeating-linear-gradient(90deg, #1c425a 0 8px, #173a50 8px 16px),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.08) 0 1px, rgba(255, 255, 255, 0) 1px 4px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+.save-options-menu .save-status .status-icon {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.save-options-menu .save-status .status-text {
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  color: #d7edfb;
+  letter-spacing: 0.25px;
+  text-shadow: 1px 1px 0 #0f2838;
+  line-height: 1.3;
+}
+
+.save-options-menu .options-action {
+  width: 100%;
+  text-align: left;
+  border-radius: 0;
+  border: 2px solid #315f7c;
+  background:
+    repeating-linear-gradient(90deg, #2b5e7c 0 8px, #255572 8px 16px),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.1) 0 1px, rgba(255, 255, 255, 0) 1px 4px);
+  color: #f2fbff;
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  letter-spacing: 0.4px;
+  text-shadow: 1px 1px 0 #1b3b51;
+  padding: 8px 10px;
+  box-shadow: 2px 2px 0 #16384d;
+}
+
+.save-options-menu .options-action:hover:not(:disabled) {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 #16384d;
+}
+
+.save-options-menu .options-action:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+.save-options-menu .options-action--danger {
+  border-color: #8b3434;
+  background:
+    repeating-linear-gradient(90deg, #6f2f3f 0 8px, #612738 8px 16px),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.09) 0 1px, rgba(255, 255, 255, 0) 1px 4px);
+  color: #ffe5e5;
+  text-shadow: 1px 1px 0 #4c1b29;
+  box-shadow: 2px 2px 0 #4c1b29;
+}
+
+.save-options-menu .options-action--danger:hover:not(:disabled) {
+  box-shadow: 1px 1px 0 #4c1b29;
+}
+
+.save-options-menu .options-format-items {
+  gap: 5px;
+}
+
+.save-options-menu .options-action--format {
+  font-size: 9px;
+}
+
+.save-options-menu .options-action--active {
+  border-color: #7cc8eb;
+  background:
+    repeating-linear-gradient(90deg, #3a7c9d 0 8px, #326f8c 8px 16px),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.14) 0 1px, rgba(255, 255, 255, 0) 1px 4px);
+  color: #fff9db;
+  box-shadow: 2px 2px 0 #20485f;
+}
+
+.save-options-menu .options-action:focus-visible {
+  outline: 2px solid #ffe58c;
+  outline-offset: 1px;
+}
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+
+.card {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01)), var(--card);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(10px);
+}
+
+.card h2 {
+  font-size: 18px;
+  margin-bottom: 16px;
+  color: var(--text);
+  border-bottom: 2px solid var(--primary);
+  padding-bottom: 8px;
+}
+
+.card h3 {
+  font-size: 14px;
+  margin: 14px 0 10px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* =========================================================
+   PRODUCTION SECTION
+   ========================================================= */
+
+.production {
+  position: sticky;
+  top: 20px;
+}
+
+.production-scene {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+}
+
+.cocada-stage {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: transparent;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 16px;
+  border: 1px solid var(--line);
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.3);
+}
+
+.cocada-stage--bar {
+  min-height: 470px;
+  aspect-ratio: auto;
+  border-radius: 0;
+  border: 2px solid #bf2020;
+  box-shadow:
+    0 0 0 2px #6c1010,
+    6px 6px 0 #2b0808,
+    inset 0 3px 0 rgba(255, 196, 196, 0.22),
+    inset 0 -48px 0 rgba(94, 14, 14, 0.58);
+  align-items: flex-start;
+  padding-top: 48px;
+  overflow: hidden;
+}
+
+.cocada-stage--bar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.25;
+  background:
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.1) 0 1px, rgba(255, 255, 255, 0) 1px 4px),
+    repeating-linear-gradient(90deg, rgba(74, 10, 10, 0.24) 0 1px, rgba(74, 10, 10, 0) 1px 5px);
+}
+
+.cocada-stage img {
+  width: 200px;
+  cursor: pointer;
+  user-select: none;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  transition: transform 0.08s cubic-bezier(0.34, 1.56, 0.64, 1);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.cocada-stage img:hover {
+  transform: scale(1.05);
+}
+
+.cocada-stage img:active {
+  transform: scale(0.92);
+}
+
+.cocada-stage--bar .cocada-btn {
+  position: relative;
+  z-index: 4;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+}
+
+.cocada-stage--bar .cocada-btn:hover:not(:disabled),
+.cocada-stage--bar .cocada-btn:active:not(:disabled) {
+  transform: none;
+  box-shadow: none;
+  background: transparent;
+}
+
+.cocada-stage--bar .cocada-image {
+  width: 220px;
+  image-rendering: pixelated;
+  filter: drop-shadow(4px 4px 0 rgba(10, 20, 14, 0.75));
+}
+
+.status-on-table {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.bar-table {
+  width: 100%;
+  height: 86px;
+  border-top: 2px solid #ffd4d4;
+  border-bottom: 3px solid #730f0f;
+  background:
+    repeating-linear-gradient(90deg, #ff4747 0 18px, #e32929 18px 36px, #c71c1c 36px 54px),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.1) 0 1px, rgba(255, 255, 255, 0) 1px 4px);
+  box-shadow:
+    inset 0 4px 0 rgba(255, 226, 226, 0.45),
+    inset 0 8px 0 rgba(255, 167, 167, 0.24),
+    inset 0 -4px 0 rgba(96, 12, 12, 0.62);
+  position: relative;
+  z-index: 1;
+  margin-top: -2px;
+}
+
+.bar-table::before,
+.bar-table::after {
+  content: "";
+  position: absolute;
+  bottom: -24px;
+  width: 26px;
+  height: 24px;
+  background:
+    repeating-linear-gradient(0deg, #d62828 0 7px, #af1a1a 7px 14px),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0 1px, rgba(255, 255, 255, 0) 1px 3px);
+  box-shadow:
+    inset -2px 0 0 rgba(92, 12, 12, 0.74),
+    inset 0 2px 0 rgba(255, 181, 181, 0.24);
+}
+
+.bar-table::before {
+  left: 56px;
+}
+
+.bar-table::after {
+  right: 56px;
+}
+
+.wood-sign {
+  width: min(88%, 430px);
+  margin: 0 auto;
+  transform: translateY(10px);
+  border: 4px solid #4f2f17;
+  background:
+    linear-gradient(180deg, #946139 0 14%, #82522f 14% 86%, #694026 86% 100%),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.07) 0 2px,
+      rgba(255, 255, 255, 0) 2px 6px
+    );
+  box-shadow:
+    4px 4px 0 #1c1008,
+    6px 6px 0 rgba(81, 14, 14, 0.35),
+    inset 0 2px 0 rgba(255, 223, 164, 0.22),
+    inset 0 -2px 0 rgba(28, 14, 6, 0.45);
+  padding: 14px 10px 12px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.wood-sign__value {
+  line-height: 1;
+}
+
+.stats-cocadas {
+  font-family: var(--font-pixel);
+  font-size: clamp(28px, 4.2vw, 44px);
+  color: #fff5dc;
+  letter-spacing: 1px;
+  text-shadow:
+    2px 0 0 #4b2b15,
+    0 2px 0 #4b2b15,
+    2px 2px 0 #4b2b15;
+}
+
+.wood-sign__rate {
+  margin-top: 8px;
+}
+
+.stats-display {
+  font-family: var(--font-pixel);
+  font-size: clamp(10px, 1.6vw, 14px);
+  color: #ffd68c;
+  text-shadow: 1px 1px 0 #4b2b15;
+  letter-spacing: 0.2px;
+}
+
+.cocada-pop {
+  animation: cocadaPop8Bit 0.16s steps(2, end);
+}
+
+@keyframes cocadaPop8Bit {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================
+   ACTIVE FLAVOR ROW
+   ========================================================= */
+
+.activeFlavorRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  padding: 8px;
+  background:
+    repeating-linear-gradient(90deg, #124762 0 8px, #0f3f57 8px 16px),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.08) 0 1px, rgba(255, 255, 255, 0) 1px 4px);
+  border-radius: 0;
+  border: 2px solid #2d6483;
+  box-shadow:
+    2px 2px 0 #0c2737,
+    4px 4px 0 rgba(6, 15, 22, 0.3);
+}
+
+.activeFlavor {
+  flex: 1;
+}
+
+.flavorBadge {
+  cursor: pointer;
+  position: relative;
+  border: 2px solid #3b7392;
+  border-radius: 0;
+  padding: 8px 10px;
+  background:
+    repeating-linear-gradient(90deg, #1f5f80 0 8px, #1a5471 8px 16px),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.1) 0 1px, rgba(255, 255, 255, 0) 1px 4px);
+  box-shadow: 2px 2px 0 #12374d;
+}
+
+.flavorBadge--active {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 0;
+  border: 2px solid #8e5b30;
+  background:
+    repeating-linear-gradient(90deg, #c18148 0 8px, #ae7040 8px 16px),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.12) 0 1px, rgba(255, 255, 255, 0) 1px 4px);
+  box-shadow: 2px 2px 0 #4b2f1a;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.badgeContent {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #f2fbff;
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  letter-spacing: 0.35px;
+  text-shadow: 1px 1px 0 #0f2f42;
+}
+
+/* =========================================================
+   OWNED UPGRADES
+   ========================================================= */
+
+.ownedUpgrades {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+/* =========================================================
+   SMALL TEXT / HINTS
+   ========================================================= */
+
+.small {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+button {
+  padding: 10px 16px;
+  border-radius: var(--radius);
+  border: 0;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.08);
+  transition: all 0.15s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+button:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--primary-light);
+  outline-offset: 2px;
+}
+
+.primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(255, 107, 91, 0.3);
+}
+
+.primary:hover:not(:disabled) {
+  box-shadow: 0 6px 20px rgba(255, 107, 91, 0.4);
+}
+
+/* =========================================================
+   RECIPE BOOK UPGRADES (REACT)
+   ========================================================= */
+
+.recipeBook {
+  position: relative;
+  margin-bottom: 14px;
+  border: 1px solid rgba(96, 75, 48, 0.55);
+  background:
+    linear-gradient(180deg, rgba(255, 249, 233, 0.86), rgba(232, 215, 182, 0.86)),
+    linear-gradient(145deg, rgba(220, 185, 124, 0.16), rgba(173, 129, 79, 0.16));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    inset 0 -12px 24px rgba(142, 101, 57, 0.1),
+    0 14px 30px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  perspective: 1200px;
+}
+
+.recipeBook::before {
+  content: "";
+  position: absolute;
+  right: -2px;
+  top: 16px;
+  bottom: 16px;
+  width: 10px;
+  border-radius: 0 10px 10px 0;
+  background: linear-gradient(180deg, rgba(241, 225, 191, 0.84), rgba(183, 149, 97, 0.84));
+  box-shadow:
+    inset 1px 0 0 rgba(255, 255, 255, 0.32),
+    inset -1px 0 0 rgba(94, 67, 36, 0.28);
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+.recipeBook::after {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border-radius: 12px;
+  pointer-events: none;
+  background:
+    radial-gradient(55% 24% at 9% 8%, rgba(255, 247, 224, 0.2), rgba(255, 247, 224, 0) 100%),
+    radial-gradient(48% 20% at 88% 93%, rgba(112, 79, 43, 0.08), rgba(112, 79, 43, 0) 100%);
+  mix-blend-mode: multiply;
+  opacity: 0.6;
+}
+
+.recipeBookInner {
+  position: relative;
+  z-index: 2;
+  border: 1px solid rgba(132, 96, 57, 0.48);
+  border-radius: 12px;
+  padding: 12px;
+  background:
+    linear-gradient(180deg, rgba(250, 241, 218, 0.84), rgba(229, 210, 174, 0.82)),
+    radial-gradient(140% 80% at 50% 0%, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0) 65%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.42),
+    inset 0 -10px 20px rgba(129, 91, 52, 0.1);
+}
+
+.pageShadowLayer {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(120% 45% at 50% -8%, rgba(255, 255, 255, 0.48), rgba(255, 255, 255, 0) 65%),
+    radial-gradient(130% 50% at 50% 112%, rgba(90, 58, 23, 0.16), rgba(90, 58, 23, 0) 68%),
+    linear-gradient(
+      90deg,
+      rgba(67, 44, 19, 0.2),
+      rgba(67, 44, 19, 0) 14%,
+      rgba(67, 44, 19, 0) 86%,
+      rgba(67, 44, 19, 0.18)
+    );
+}
+
+.paperTextureLayer {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0.2;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.08) 0 1px,
+      rgba(117, 90, 53, 0.08) 1px 2px,
+      rgba(255, 255, 255, 0.06) 2px 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(120, 91, 55, 0.06) 0 1px,
+      rgba(255, 255, 255, 0.03) 1px 3px
+    );
+}
+
+.paperImperfectionLayer {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0.14;
+  background:
+    radial-gradient(circle at 18% 22%, rgba(123, 84, 47, 0.18) 0 2.5%, rgba(123, 84, 47, 0) 8%),
+    radial-gradient(circle at 77% 31%, rgba(126, 87, 51, 0.16) 0 2%, rgba(126, 87, 51, 0) 7%),
+    radial-gradient(circle at 62% 74%, rgba(107, 70, 38, 0.14) 0 2.2%, rgba(107, 70, 38, 0) 8%),
+    radial-gradient(circle at 30% 82%, rgba(99, 65, 34, 0.14) 0 1.8%, rgba(99, 65, 34, 0) 6%);
+  mix-blend-mode: multiply;
+}
+
+.bookPageEdge {
+  height: 8px;
+  width: 100%;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.62),
+    rgba(227, 209, 173, 0.88) 52%,
+    rgba(176, 143, 95, 0.55)
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    0 2px 4px rgba(67, 44, 19, 0.12);
+}
+
+.recipeBookHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.recipeBookTitleWrap {
+  position: relative;
+}
+
+.recipeBookHeader h3 {
+  font-size: 20px;
+  color: rgba(88, 58, 32, 0.96);
+  letter-spacing: 0.2px;
+  margin-bottom: 4px;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.55),
+    0 -1px 0 rgba(75, 46, 22, 0.12);
+}
+
+.recipeHelpButton {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  border: 1px solid rgba(142, 104, 58, 0.55);
+  background: linear-gradient(180deg, rgba(247, 232, 199, 0.65), rgba(222, 198, 154, 0.75));
+  color: rgba(96, 64, 35, 0.95);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.recipeHelpButton:hover {
+  filter: brightness(1.04);
+}
+
+.recipeBookHelp {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  width: 320px;
+  border: 1px solid rgba(142, 104, 58, 0.5);
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: linear-gradient(180deg, rgba(245, 229, 196, 0.96), rgba(228, 206, 165, 0.96));
+  box-shadow: 0 6px 14px rgba(61, 39, 18, 0.2);
+  z-index: 40;
+}
+
+.recipeBookHelp p {
+  margin: 0;
+  font-size: 12px;
+  color: rgba(88, 58, 32, 0.94);
+  line-height: 1.35;
+}
+
+.recipeBookHelp p + p {
+  margin-top: 6px;
+}
+
+.recipeBookSpine {
+  height: 4px;
+  width: 100%;
+  border-radius: 99px;
+  margin-bottom: 12px;
+  background: linear-gradient(
+    90deg,
+    rgba(127, 86, 47, 0.88),
+    rgba(193, 151, 95, 0.78),
+    rgba(127, 86, 47, 0.88)
+  );
+  opacity: 0.95;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -1px 0 rgba(72, 47, 23, 0.3);
+}
+
+@keyframes recipeUnlockPulse {
+  0% {
+    transform: scale(0.98);
+    box-shadow: 0 0 0 0 rgba(198, 152, 89, 0.38);
+  }
+  65% {
+    transform: scale(1.01);
+    box-shadow: 0 0 0 9px rgba(198, 152, 89, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: none;
+  }
+}
+
+@keyframes recipePageTurnReveal {
+  0% {
+    transform: perspective(900px) rotateY(-8deg) translateX(-3px);
+  }
+  45% {
+    transform: perspective(900px) rotateY(4deg) translateX(1px);
+  }
+  100% {
+    transform: perspective(900px) rotateY(0deg) translateX(0);
+  }
+}
+
+.recipeIcon {
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  border-radius: 10px;
+  border: 1px solid rgba(149, 113, 67, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 252, 240, 0.65);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -3px 5px rgba(117, 86, 45, 0.08);
+}
+
+.recipeIcon img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.recipeIcon--silhouette img {
+  filter: grayscale(1) brightness(0.65);
+}
+
+.paperTextureLayer--page {
+  opacity: 0.16;
+}
+
+.paperImperfectionLayer--page {
+  opacity: 0.11;
+}
+
+/* Livro aberto editorial (override final, sem estilo card) */
+.recipeBook.recipeBook--open {
+  border-radius: 20px;
+  padding: 18px;
+  border: 1px solid rgba(88, 61, 32, 0.72);
+  background:
+    radial-gradient(140% 55% at 50% 0%, rgba(247, 228, 189, 0.58), rgba(247, 228, 189, 0) 62%),
+    linear-gradient(180deg, rgba(170, 126, 74, 0.95), rgba(130, 92, 50, 0.96));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 241, 210, 0.2),
+    inset 0 -15px 24px rgba(69, 43, 18, 0.32),
+    0 16px 30px rgba(0, 0, 0, 0.4);
+}
+
+.recipeBook.recipeBook--open .recipeBookInner {
+  border: 1px solid rgba(113, 78, 44, 0.58);
+  background:
+    linear-gradient(180deg, rgba(238, 220, 182, 0.9), rgba(214, 188, 142, 0.9)),
+    radial-gradient(160% 90% at 50% 0%, rgba(255, 243, 214, 0.18), rgba(255, 243, 214, 0) 70%);
+}
+
+.recipeBook.recipeBook--open .recipeSpread {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 26px minmax(0, 1fr);
+  border-radius: 12px;
+  padding: 10px 8px;
+  background:
+    linear-gradient(180deg, rgba(247, 232, 199, 0.34), rgba(212, 190, 151, 0.24)),
+    repeating-linear-gradient(0deg, rgba(108, 75, 41, 0.05) 0 1px, rgba(108, 75, 41, 0) 1px 28px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.34),
+    inset 0 -1px 0 rgba(126, 91, 53, 0.2);
+}
+
+.recipeBook.recipeBook--open .recipeSpread::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 10px;
+  bottom: 10px;
+  width: 42px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  background: radial-gradient(55% 100% at 50% 50%, rgba(61, 37, 16, 0.22), rgba(61, 37, 16, 0));
+  opacity: 0.88;
+}
+
+.recipeBook.recipeBook--open .recipeGutter {
+  position: relative;
+}
+
+.recipeBook.recipeBook--open .recipeGutter::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 4px;
+  bottom: 4px;
+  width: 13px;
+  border-radius: 99px;
+  background: linear-gradient(
+    90deg,
+    rgba(90, 58, 28, 0.62),
+    rgba(143, 99, 52, 0.26),
+    rgba(90, 58, 28, 0.62)
+  );
+  box-shadow:
+    inset 0 0 10px rgba(43, 25, 11, 0.34),
+    0 0 0 1px rgba(118, 81, 42, 0.28);
+}
+
+.recipeBook.recipeBook--open .recipeGutter::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 14px;
+  bottom: 14px;
+  width: 5px;
+  border-radius: 6px;
+  background: repeating-radial-gradient(
+    circle at 50% 8px,
+    rgba(84, 50, 24, 0.96) 0 2.1px,
+    rgba(84, 50, 24, 0) 2.1px 12px
+  );
+  opacity: 0.9;
+}
+
+.recipeBook.recipeBook--open .recipeLeaf {
+  position: relative;
+  z-index: 1;
+  min-height: 420px;
+  border: 1px solid rgba(142, 104, 58, 0.45);
+  border-radius: 8px;
+  padding: 14px 12px 24px;
+  background:
+    radial-gradient(140% 45% at 50% 0%, rgba(255, 247, 226, 0.36), rgba(255, 247, 226, 0) 74%),
+    linear-gradient(180deg, rgba(241, 223, 185, 0.97), rgba(222, 198, 154, 0.97));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 244, 220, 0.44),
+    inset 0 -11px 16px rgba(123, 88, 45, 0.14),
+    0 2px 7px rgba(42, 27, 13, 0.2);
+  transform-style: preserve-3d;
+}
+
+.recipeBook.recipeBook--open .recipeLeaf:hover {
+  z-index: 25;
+}
+
+.recipeBook.recipeBook--open .recipeLeaf::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 46px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.recipeBook.recipeBook--open .recipeLeaf::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  opacity: 0.65;
+  background: linear-gradient(
+    90deg,
+    rgba(129, 93, 55, 0),
+    rgba(129, 93, 55, 0.35) 15%,
+    rgba(129, 93, 55, 0.35) 85%,
+    rgba(129, 93, 55, 0)
+  );
+}
+
+.recipeBook.recipeBook--open .recipeLeaf--left {
+  transform: rotate(-0.35deg) rotateY(2.2deg);
+  transform-origin: right center;
+}
+
+.recipeBook.recipeBook--open .recipeLeaf--left::before {
+  right: -2px;
+  background: linear-gradient(90deg, rgba(100, 66, 34, 0), rgba(100, 66, 34, 0.2));
+}
+
+.recipeBook.recipeBook--open .recipeLeaf--right {
+  transform: rotate(0.28deg) rotateY(-2deg);
+  transform-origin: left center;
+}
+
+.recipeBook.recipeBook--open .recipeLeaf--right::before {
+  left: -2px;
+  background: linear-gradient(270deg, rgba(100, 66, 34, 0), rgba(100, 66, 34, 0.2));
+}
+
+.recipeBook.recipeBook--open .recipeEntryList {
+  position: relative;
+  z-index: 10;
+}
+
+.recipeBook.recipeBook--open .recipeEntryList--compact {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 10px;
+  align-items: start;
+}
+
+.recipeBook.recipeBook--open .recipeEntryList--compact .recipeEntry {
+  border-bottom: none;
+  padding: 4px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.recipeBook.recipeBook--open .recipeEntryList--compact .recipeEntry--detailed {
+  grid-column: 1 / -1;
+  justify-content: flex-start;
+}
+
+.recipeBook.recipeBook--open .recipeEntryList--compact .recipeEntryTop {
+  margin-bottom: 0;
+  gap: 0;
+}
+
+.recipeBook.recipeBook--open .recipeEntryList--compact .recipeEntry--detailed .recipeEntryTop {
+  gap: 9px;
+  width: 100%;
+}
+
+.recipeBook.recipeBook--open .recipeEntryList--compact .recipeEntry--detailed .recipeIcon {
+  width: 58px;
+  height: 58px;
+  flex: 0 0 58px;
+}
+
+.recipeBook.recipeBook--open .recipeEntryList--compact .recipeEntry--detailed .recipeIcon img {
+  width: 50px;
+  height: 50px;
+}
+
+.recipeBook.recipeBook--open .recipeEntryList--compact .recipeIcon {
+  width: 54px;
+  height: 54px;
+  flex: 0 0 54px;
+}
+
+.recipeBook.recipeBook--open .recipeEntryList--compact .recipeIcon img {
+  width: 46px;
+  height: 46px;
+}
+
+.recipeBook.recipeBook--open .recipeSectionLabel {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.1px;
+  color: rgba(122, 89, 52, 0.8);
+  font-weight: 700;
+  margin: 2px 0 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(145, 108, 66, 0.22);
+}
+
+.recipeBook.recipeBook--open .recipeEntry {
+  position: relative;
+  padding: 8px 2px 9px;
+  border-bottom: 1px solid rgba(123, 86, 48, 0.34);
+}
+
+.recipeBook.recipeBook--open .recipeEntry:last-child {
+  border-bottom: none;
+}
+
+.recipeBook.recipeBook--open .recipeEntryTop {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin-bottom: 6px;
+  position: relative;
+}
+
+.recipeBook.recipeBook--open .recipeEntryTop--iconOnly {
+  gap: 0;
+}
+
+.recipeBook.recipeBook--open .recipeEntryInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  padding-top: 2px;
+}
+
+.recipeBook.recipeBook--open .recipeEntryName {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  line-height: 1.2;
+  color: rgba(92, 61, 32, 0.95);
+  text-transform: uppercase;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.recipeBook.recipeBook--open .recipeEntryCost {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  line-height: 1.2;
+  color: rgba(138, 95, 47, 0.95);
+}
+
+.recipeBook.recipeBook--open .recipeIcon {
+  width: 58px;
+  height: 58px;
+  flex: 0 0 58px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.recipeBook.recipeBook--open .recipeIcon img {
+  width: 50px;
+  height: 50px;
+}
+
+.recipeBook.recipeBook--open .recipeEntryFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.recipeBook.recipeBook--open .recipeEntry--locked {
+  opacity: 0.72;
+}
+
+.recipeBook.recipeBook--open .recipeEntry--affordable {
+  box-shadow: inset 0 1px 0 rgba(255, 240, 214, 0.24);
+}
+
+/* Upgrades disponíveis (hover para revelar custo) */
+.recipeBook.recipeBook--open
+  .recipeEntry[data-page-state="available"]
+  .recipeEntryTop:not(.recipeEntryTop--iconOnly) {
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    filter 0.15s ease;
+}
+
+.recipeBook.recipeBook--open
+  .recipeEntry[data-page-state="available"]
+  .recipeEntryTop:not(.recipeEntryTop--iconOnly):hover {
+  transform: scale(1.06);
+  filter: drop-shadow(0 2px 6px rgba(198, 152, 89, 0.4));
+}
+
+.recipeBook.recipeBook--open
+  .recipeEntry[data-page-state="available"]
+  .recipeEntryTop:not(.recipeEntryTop--iconOnly):active {
+  transform: scale(0.98);
+}
+
+/* ============================================
+   UPGRADE TOOLTIP (Card ao Hover)
+   ============================================ */
+
+.recipeUpgradeTooltip {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.recipeUpgradeTooltip .upgradeTooltipContent {
+  background: linear-gradient(135deg, rgb(28, 28, 34), rgb(23, 23, 29));
+  border: 3px solid rgba(198, 152, 89, 0.8);
+  border-radius: 8px;
+  padding: 14px 16px;
+  min-width: 320px;
+  box-shadow:
+    0 6px 14px rgba(0, 0, 0, 0.42),
+    0 0 0 1px rgba(198, 152, 89, 0.5) inset;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  filter: none;
+  text-rendering: geometricPrecision;
+}
+
+.recipeUpgradeTooltip .upgradeTooltipTop {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+  align-items: flex-start;
+}
+
+.recipeUpgradeTooltip .upgradeTooltipIcon {
+  width: 52px;
+  height: 52px;
+  flex: 0 0 52px;
+  border: 1px solid rgba(198, 152, 89, 0.5);
+  border-radius: 4px;
+  background: rgba(198, 152, 89, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+}
+
+.recipeUpgradeTooltip .upgradeTooltipIcon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.recipeUpgradeTooltip .upgradeTooltipHeading {
+  flex: 1;
+}
+
+.recipeUpgradeTooltip .upgradeTooltipTitle {
+  margin: 0 0 3px 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(255, 240, 214, 1);
+  line-height: 1.3;
+  text-shadow: none;
+}
+
+.recipeUpgradeTooltip .upgradeTooltipCategory {
+  font-size: 10px;
+  color: rgba(198, 152, 89, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.recipeUpgradeTooltip .upgradeTooltipCostBadge {
+  background: rgba(198, 152, 89, 0.3);
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(212, 167, 101, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid rgba(198, 152, 89, 0.5);
+  margin-bottom: 10px;
+}
+
+.recipeUpgradeTooltip .upgradeTooltipCostLabel {
+  font-weight: 700;
+  color: rgba(198, 152, 89, 0.9);
+}
+
+.recipeUpgradeTooltip .upgradeTooltipEffect {
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(152, 234, 186, 0.96);
+  line-height: 1.45;
+  margin-bottom: 8px;
+  text-shadow: none;
+}
+
+.recipeUpgradeTooltip .upgradeTooltipDescription {
+  font-size: 12px;
+  color: rgba(255, 240, 214, 0.96);
+  line-height: 1.5;
+  margin-bottom: 10px;
+  text-shadow: none;
+}
+
+.recipeUpgradeTooltip .upgradeTooltipFooter {
+  padding-top: 10px;
+  border-top: 1px solid rgba(198, 152, 89, 0.3);
+  text-align: center;
+}
+
+.recipeUpgradeTooltip .upgradeTooltipActionLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255, 240, 214, 0.9);
+  display: block;
+}
+
+.recipeUpgradeTooltip .upgradeTooltipActionLabel--disabled {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255, 120, 120, 0.7);
+  display: block;
+}
+
+/* Animação de aparecimento suave */
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    margin-top: 4px;
+  }
+  to {
+    opacity: 1;
+    margin-top: 0;
+  }
+}
+
+.recipeUpgradeTooltip {
+  animation: tooltipFadeIn 0.2s ease-out;
+}
+
+.recipeBook.recipeBook--open .recipeEntry--bought {
+  background: linear-gradient(90deg, rgba(214, 182, 133, 0.14), rgba(214, 182, 133, 0));
+}
+
+.recipeBook.recipeBook--open .recipeEntry--justUnlocked {
+  animation:
+    recipeUnlockPulse 0.95s ease-out,
+    recipePageTurnReveal 0.8s ease-out;
+}
+
+.recipeBook.recipeBook--open .paperTextureLayer--page {
+  opacity: 0.18;
+}
+
+.recipeBook.recipeBook--open .paperImperfectionLayer--page {
+  opacity: 0.16;
+}
+
+.recipeBook.recipeBook--open .recipePageNumber {
+  position: absolute;
+  right: 14px;
+  bottom: 8px;
+  font-size: 10px;
+  letter-spacing: 1.1px;
+  color: rgba(113, 82, 49, 0.72);
+}
+
+.recipeBook.recipeBook--open .recipePageActions {
+  position: absolute;
+  right: 12px;
+  bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 20;
+}
+
+.recipeBook.recipeBook--open .recipePageNumber--inline {
+  position: static;
+}
+
+.recipeBook.recipeBook--open .recipeOwnedListButton {
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border-radius: 4px;
+  border: 1px solid rgba(145, 108, 66, 0.42);
+  background: rgba(237, 219, 183, 0.8);
+  color: rgba(101, 68, 39, 0.9);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.recipeBook.recipeBook--open .recipeOwnedListButton:hover {
+  filter: brightness(1.05);
+}
+
+.recipeBook.recipeBook--open .recipeOwnedListPanel {
+  position: absolute;
+  right: 12px;
+  bottom: 30px;
+  width: 184px;
+  max-height: 205px;
+  border: 1px solid rgba(145, 108, 66, 0.46);
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(245, 229, 196, 0.98), rgba(228, 206, 165, 0.98));
+  box-shadow: 0 8px 18px rgba(61, 39, 18, 0.22);
+  padding: 8px 9px;
+  z-index: 40;
+}
+
+.recipeBook.recipeBook--open .recipeOwnedListTitle {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: rgba(100, 68, 39, 0.92);
+  margin-bottom: 6px;
+}
+
+.recipeBook.recipeBook--open .recipeOwnedListItems {
+  margin: 0;
+  padding: 0 0 0 14px;
+  max-height: 162px;
+  overflow: auto;
+}
+
+.recipeBook.recipeBook--open .recipeOwnedListItems li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: rgba(88, 58, 32, 0.92);
+  line-height: 1.35;
+  margin-bottom: 3px;
+}
+
+.recipeBook.recipeBook--open .recipeOwnedListItemIcon {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  border: 1px solid rgba(137, 102, 62, 0.35);
+  background: rgba(245, 229, 198, 0.8);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 16px;
+}
+
+.recipeBook.recipeBook--open .recipeOwnedListItemIcon img {
+  width: 13px;
+  height: 13px;
+  image-rendering: pixelated;
+}
+
+.recipeBook.recipeBook--open .recipeOwnedListItemName {
+  min-width: 0;
+}
+
+.recipeBook.recipeBook--open .recipeOwnedListEmpty {
+  margin: 0;
+  font-size: 11px;
+  color: rgba(105, 76, 46, 0.9);
+}
+
+@media (max-width: 720px) {
+  .recipeBook.recipeBook--open .recipeSpread {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .recipeBook.recipeBook--open .recipeGutter {
+    display: none;
+  }
+
+  .recipeBook.recipeBook--open .recipeSpread::before {
+    display: none;
+  }
+
+  .recipeBook.recipeBook--open .recipeLeaf,
+  .recipeBook.recipeBook--open .recipeLeaf--left,
+  .recipeBook.recipeBook--open .recipeLeaf--right {
+    min-height: auto;
+    transform: none;
+  }
+
+  .recipeBook.recipeBook--open .recipeLeaf::before {
+    display: none;
+  }
+
+  .recipeBook.recipeBook--open .recipeEntryFooter {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .recipeBook.recipeBook--open .recipeEntryFooter button {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   RECIPE BOOK - 8-BIT OVERRIDE
+   ========================================================= */
+
+.recipeBook.recipeBook--open {
+  border-radius: 0;
+  padding: 10px;
+  border: 3px solid #704525;
+  background:
+    repeating-linear-gradient(90deg, #9a6c3f 0 6px, #8b6037 6px 12px),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.08) 0 1px, rgba(255, 255, 255, 0) 1px 4px);
+  box-shadow:
+    4px 4px 0 #2e1a0d,
+    8px 8px 0 rgba(24, 12, 6, 0.35);
+  perspective: none;
+}
+
+.recipeBook.recipeBook--open::before,
+.recipeBook.recipeBook--open::after,
+.recipeBook.recipeBook--open .pageShadowLayer,
+.recipeBook.recipeBook--open .paperTextureLayer,
+.recipeBook.recipeBook--open .paperImperfectionLayer,
+.recipeBook.recipeBook--open .bookPageEdge {
+  display: none;
+}
+
+.recipeBook.recipeBook--open .recipeBookInner {
+  border-radius: 0;
+  border: 2px solid #5f381d;
+  padding: 10px;
+  background:
+    repeating-linear-gradient(90deg, #dcc79b 0 8px, #d0bb8e 8px 16px),
+    repeating-linear-gradient(0deg, rgba(118, 83, 44, 0.08) 0 1px, rgba(118, 83, 44, 0) 1px 4px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 245, 220, 0.32),
+    3px 3px 0 rgba(56, 33, 15, 0.28);
+}
+
+.recipeBook.recipeBook--open .recipeBookHeader {
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #7a522d;
+}
+
+.recipeBook.recipeBook--open .recipeBookHeader h3 {
+  margin: 0;
+  font-family: var(--font-pixel);
+  font-size: 14px;
+  color: #5f381d;
+  text-shadow: 1px 1px 0 #f2e2bf;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.recipeBook.recipeBook--open .recipeHelpButton,
+.recipeBook.recipeBook--open .recipeOwnedListButton {
+  border-radius: 0;
+  border: 2px solid #8c5b31;
+  background: #ead8b1;
+  color: #5f381d;
+  box-shadow: 2px 2px 0 rgba(72, 42, 20, 0.35);
+}
+
+.recipeBook.recipeBook--open .recipeHelpButton:hover,
+.recipeBook.recipeBook--open .recipeOwnedListButton:hover {
+  filter: none;
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 rgba(72, 42, 20, 0.35);
+}
+
+.recipeBook.recipeBook--open .recipeBookHelp,
+.recipeBook.recipeBook--open .recipeOwnedListPanel {
+  border-radius: 0;
+  border: 2px solid #8c5b31;
+  background: #e8d2a6;
+  box-shadow: 3px 3px 0 rgba(58, 32, 14, 0.32);
+}
+
+.recipeBook.recipeBook--open .recipeSpine,
+.recipeBook.recipeBook--open .recipeBookSpine {
+  border-radius: 0;
+  height: 5px;
+  margin-bottom: 8px;
+  background: repeating-linear-gradient(90deg, #7b4e28 0 4px, #8f5d31 4px 8px);
+  box-shadow: none;
+}
+
+.recipeBook.recipeBook--open .recipeSpread {
+  border: 2px solid #9b6d3f;
+  border-radius: 0;
+  padding: 8px;
+  gap: 8px;
+  background:
+    repeating-linear-gradient(90deg, #d7c196 0 10px, #ccb688 10px 20px),
+    repeating-linear-gradient(0deg, rgba(117, 85, 47, 0.08) 0 1px, rgba(117, 85, 47, 0) 1px 4px);
+  box-shadow: inset 0 1px 0 rgba(255, 245, 219, 0.3);
+}
+
+.recipeBook.recipeBook--open .recipeSpread::before {
+  display: none;
+}
+
+.recipeBook.recipeBook--open .recipeGutter::before {
+  border-radius: 0;
+  width: 8px;
+  background: repeating-linear-gradient(0deg, #7a4e28 0 4px, #5e3a1d 4px 8px);
+  box-shadow: none;
+}
+
+.recipeBook.recipeBook--open .recipeGutter::after {
+  display: none;
+}
+
+.recipeBook.recipeBook--open .recipeLeaf,
+.recipeBook.recipeBook--open .recipeLeaf--left,
+.recipeBook.recipeBook--open .recipeLeaf--right {
+  border-radius: 0;
+  transform: none;
+  border: 2px solid #ab7a49;
+  min-height: 390px;
+  padding: 10px 10px 20px;
+  background:
+    repeating-linear-gradient(90deg, #efe0bd 0 10px, #e7d7b1 10px 20px),
+    repeating-linear-gradient(0deg, rgba(113, 79, 40, 0.08) 0 1px, rgba(113, 79, 40, 0) 1px 5px);
+  box-shadow: inset 0 1px 0 rgba(255, 248, 231, 0.35);
+}
+
+.recipeBook.recipeBook--open .recipeLeaf::before,
+.recipeBook.recipeBook--open .recipeLeaf::after,
+.recipeBook.recipeBook--open .paperTextureLayer--page,
+.recipeBook.recipeBook--open .paperImperfectionLayer--page {
+  display: none;
+}
+
+.recipeBook.recipeBook--open .recipeSectionLabel,
+.recipeBook.recipeBook--open .recipePageNumber,
+.recipeBook.recipeBook--open .recipePageNumber--inline,
+.recipeBook.recipeBook--open .recipeOwnedListTitle,
+.recipeBook.recipeBook--open .recipeOwnedListItemName,
+.recipeBook.recipeBook--open .recipeOwnedListEmpty,
+.recipeBook.recipeBook--open .recipeBookHelp p {
+  font-family: var(--font-pixel);
+}
+
+.recipeBook.recipeBook--open .recipeSectionLabel {
+  color: #6e4525;
+  border-bottom: 2px solid #b78956;
+  letter-spacing: 0.8px;
+  font-size: 10px;
+}
+
+.recipeBook.recipeBook--open .recipeEntry {
+  border-bottom: 2px solid rgba(153, 111, 67, 0.42);
+  padding: 7px 1px 8px;
+}
+
+.recipeBook.recipeBook--open
+  .recipeEntry[data-page-state="available"]
+  .recipeEntryTop:not(.recipeEntryTop--iconOnly) {
+  border-radius: 0;
+  border: 2px solid #c8904d;
+  background: #f3e2bc;
+  box-shadow: 2px 2px 0 rgba(88, 55, 28, 0.22);
+}
+
+.recipeBook.recipeBook--open
+  .recipeEntry[data-page-state="available"]
+  .recipeEntryTop:not(.recipeEntryTop--iconOnly):hover {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 rgba(88, 55, 28, 0.22);
+}
+
+.recipeBook.recipeBook--open .recipeIcon,
+.recipeBook.recipeBook--open .recipeEntryList--compact .recipeIcon {
+  border-radius: 0;
+  border: 2px solid #9f6c3e;
+  background: #f0deba;
+  box-shadow: none;
+}
+
+.recipeBook.recipeBook--open .recipeEntry--justUnlocked {
+  animation: none;
+}
+
+/* =========================================================
+   BEACH MENU STRUCTURES (REACT)
+   ========================================================= */
+
+.beachMenu {
+  margin-bottom: 14px;
+  border: 1px solid var(--line-light);
+  background:
+    linear-gradient(135deg, rgba(255, 179, 71, 0.05), rgba(29, 209, 161, 0.05)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01)), var(--card-dark);
+}
+
+.beachMenuHeader {
+  margin-bottom: 12px;
+}
+
+.beachMenuHeader h3 {
+  font-size: 18px;
+  margin-bottom: 3px;
+}
+
+.beachMenuHeader p {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.beachMenuList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.beachMenuItem {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01)), var(--card);
+  padding: 12px;
+  transition: transform 0.2s ease;
+}
+
+.beachMenuItem:hover {
+  transform: translateY(-2px);
+}
+
+.beachMenuItem--blocked {
+  opacity: 0.76;
+}
+
+.beachMenuItem--available {
+  border-color: var(--primary-light);
+  box-shadow:
+    0 0 0 1px rgba(255, 179, 71, 0.16),
+    var(--shadow-sm);
+}
+
+.beachMenuItem--active {
+  border-color: var(--accent);
+  background:
+    linear-gradient(180deg, rgba(29, 209, 161, 0.11), rgba(29, 209, 161, 0.03)), var(--card);
+}
+
+.beachMenuItem--justBought {
+  animation: beachMenuBoughtPulse 0.9s ease-out;
+}
+
+@keyframes beachMenuBoughtPulse {
+  0% {
+    transform: scale(0.985);
+    box-shadow: 0 0 0 0 rgba(29, 209, 161, 0.35);
+  }
+  60% {
+    transform: scale(1.008);
+    box-shadow: 0 0 0 9px rgba(29, 209, 161, 0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.beachMenuItemTop {
+  display: grid;
+  grid-template-columns: 54px 1fr auto;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.beachMenuIconWrap {
+  width: 54px;
+  height: 54px;
+  border-radius: 10px;
+  border: 1px solid var(--line-light);
+  background: rgba(255, 255, 255, 0.03);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.beachMenuIcon {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.beachMenuTitleWrap h4 {
+  margin: 0 0 2px;
+  font-size: 14px;
+}
+
+.beachMenuTitleWrap p {
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.menuItemStatus {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.menuItemStatus--blocked {
+  color: var(--muted);
+  border-color: var(--line);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.menuItemStatus--available {
+  color: var(--primary-light);
+  border-color: rgba(255, 179, 71, 0.35);
+  background: rgba(255, 179, 71, 0.08);
+}
+
+.menuItemStatus--active {
+  color: var(--accent);
+  border-color: rgba(29, 209, 161, 0.45);
+  background: rgba(29, 209, 161, 0.1);
+}
+
+.beachMenuStats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.beachMenuStat {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 8px;
+}
+
+.beachMenuStat span {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.beachMenuStat strong {
+  font-size: 12px;
+  color: var(--text);
+}
+
+.beachMenuFooter {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.beachMenuCost span {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.beachMenuCost strong {
+  color: var(--primary-light);
+  font-size: 13px;
+}
+
+.beachMenuFooter button {
+  min-width: 110px;
+}
+
+@media (max-width: 720px) {
+  .beachMenuItemTop {
+    grid-template-columns: 46px 1fr;
+  }
+
+  .menuItemStatus {
+    grid-column: 1 / -1;
+    justify-self: flex-start;
+  }
+
+  .beachMenuStats {
+    grid-template-columns: 1fr;
+  }
+
+  .beachMenuFooter {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .beachMenuFooter button {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   FLAVOR MODAL
+   ========================================================= */
+
+.flavorModal {
+  position: fixed;
+  inset: 0;
+  z-index: 140;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flavorModalBackdrop {
+  position: absolute;
+  inset: 0;
+  background: var(--flavor-backdrop);
+}
+
+.flavorModalCard {
+  position: relative;
+  max-width: 900px;
+  width: 90%;
+  padding: 14px 14px 14px;
+  border: 4px solid var(--flavor-panel-border);
+  border-radius: 0;
+  background: var(--flavor-panel-bg);
+  box-shadow: 6px 6px 0 var(--flavor-panel-shadow);
+  animation: flavorModalPop8Bit 0.14s steps(3, end);
+}
+
+.flavorModalCard--wood {
+  overflow: hidden;
+}
+
+.flavorModalHeader {
+  margin: -14px -14px 10px;
+  padding: 11px 16px 9px;
+  border-bottom: 4px solid var(--flavor-panel-border);
+  background: var(--flavor-header-bg);
+}
+
+@keyframes flavorModalPop8Bit {
+  from {
+    transform: translateY(-6px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.flavorModalCard h2 {
+  font-family: var(--font-pixel);
+  font-size: 22px;
+  margin: 0;
+  color: var(--flavor-title);
+  text-transform: uppercase;
+  line-height: 1.2;
+  text-shadow: 1px 1px 0 var(--flavor-title-shadow);
+  border: 0;
+  padding: 0;
+}
+
+.flavorModalLead {
+  margin-bottom: 10px;
+  padding: 8px 10px;
+  border: 3px solid var(--flavor-lead-border);
+  background: var(--flavor-lead-bg);
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  color: var(--flavor-lead-text);
+  letter-spacing: 0;
+  line-height: 1.4;
+}
+
+.flavorModalLead strong {
+  color: var(--flavor-lead-strong);
+}
+
+.flavorSeedBox {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0 0 12px;
+  padding: 8px;
+  border: 3px solid var(--flavor-lead-border);
+  background: var(--flavor-lead-bg);
+}
+
+.flavorSeedLabel {
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  color: var(--flavor-lead-text);
+}
+
+.flavorSeedInput {
+  width: 100%;
+  height: 34px;
+  border: 3px solid var(--flavor-action-border);
+  background: var(--paper-light);
+  color: var(--flavor-action-text);
+  font-family: var(--font-pixel);
+  font-size: 13px;
+  padding: 4px 8px;
+}
+
+.flavorOptions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 10px 0 12px;
+}
+
+.flavorOptions--wood {
+  align-items: stretch;
+}
+
+.flavorOption {
+  position: relative;
+  padding: 6px 8px 10px;
+  border-radius: 0;
+  border: 3px solid var(--flavor-card-border);
+  background: var(--flavor-card-bg);
+  text-align: center;
+  box-shadow: 3px 3px 0 var(--flavor-card-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.flavorOption--wood {
+  min-height: 248px;
+}
+
+.flavorOptionTitle {
+  border: 3px solid var(--flavor-title-chip-border);
+  padding: 4px 6px 3px;
+  background: var(--flavor-title-chip-bg);
+}
+
+.flavorOption--coco .flavorOptionTitle {
+  border-color: var(--flavor-coco-border);
+  background: var(--flavor-coco-bg);
+}
+
+.flavorOption--chocolate .flavorOptionTitle {
+  border-color: var(--flavor-choco-border);
+  background: var(--flavor-choco-bg);
+}
+
+.flavorOption--doce .flavorOptionTitle {
+  border-color: var(--flavor-doce-border);
+  background: var(--flavor-doce-bg);
+}
+
+.flavorOption--selected {
+  border-color: var(--flavor-selected-border);
+  background: var(--flavor-selected-bg);
+  box-shadow:
+    inset 0 0 0 2px var(--flavor-selected-inner),
+    3px 3px 0 var(--flavor-card-shadow);
+}
+
+.flavorOptionIcon {
+  width: 90px;
+  height: 70px;
+  margin: 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--flavor-icon-border);
+  border-radius: 0;
+  background: var(--flavor-icon-bg);
+  box-shadow: inset 0 0 0 2px var(--flavor-icon-inner);
+}
+
+.flavorOptionIcon img {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  line-height: 1;
+}
+
+.flavorOption--selected .flavorOptionIcon {
+  border-color: var(--flavor-icon-selected-border);
+  background: var(--flavor-icon-selected-bg);
+}
+
+.flavorOptionTitle {
+  font-family: var(--font-pixel);
+  font-size: 16px;
+  margin: 0;
+  color: var(--flavor-confirm-text);
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
+  text-shadow: 1px 1px 0 var(--flavor-action-text);
+}
+
+.flavorOption--doce .flavorOptionTitle {
+  color: var(--flavor-doce-text);
+  text-shadow: 1px 1px 0 var(--flavor-doce-text-shadow);
+}
+
+.flavorOptionBuffs {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.flavorBuffGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.flavorBuffGroupTitle {
+  margin: 0;
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--flavor-action-text);
+  text-shadow: 1px 1px 0 var(--flavor-action-text-shadow);
+}
+
+.flavorBuff {
+  font-family: var(--font-pixel);
+  font-size: 14px;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.flavorBuff--positive {
+  color: var(--flavor-buff-positive);
+  text-shadow: 1px 1px 0 var(--flavor-buff-positive-shadow);
+}
+
+.flavorBuff--negative {
+  color: var(--flavor-buff-negative);
+  text-shadow: 1px 1px 0 var(--flavor-buff-negative-shadow);
+}
+
+.flavorSelectBtn {
+  margin-top: auto;
+  border: 3px solid var(--flavor-select-border);
+  background: var(--flavor-select-bg);
+  color: var(--flavor-select-text);
+  font-family: var(--font-pixel);
+  font-size: 13px;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 0 var(--flavor-select-text-shadow);
+  box-shadow: 2px 2px 0 var(--flavor-select-shadow);
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.flavorSelectBtn:hover {
+  transform: translate(1px, 1px);
+  background: var(--flavor-select-hover-bg);
+  box-shadow: 1px 1px 0 var(--flavor-select-shadow);
+}
+
+.flavorSelectBtn:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+.flavorSelectBtn--active {
+  border-color: var(--flavor-select-active-border);
+  background: var(--flavor-select-active-bg);
+}
+
+.flavorPreview {
+  display: none;
+}
+
+.flavorPreview h4 {
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  margin-bottom: 8px;
+  color: var(--flavor-preview-title);
+  text-transform: uppercase;
+}
+
+.previewStats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.previewStats div {
+  background: var(--flavor-preview-card-bg);
+  border: 2px solid var(--flavor-preview-card-border);
+  border-radius: 0;
+  padding: 8px 6px;
+  text-align: center;
+}
+
+.previewStats span {
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  color: var(--flavor-preview-label);
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-bottom: 4px;
+}
+
+.previewStats strong {
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  color: var(--flavor-preview-value);
+  display: block;
+}
+
+.flavorActions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.flavorActions button {
+  flex: 1;
+  max-width: 320px;
+  border-radius: 0;
+  border: 3px solid var(--flavor-action-border);
+  background: var(--flavor-action-bg);
+  color: var(--flavor-action-text);
+  font-family: var(--font-pixel);
+  font-size: 16px;
+  text-transform: uppercase;
+  box-shadow: 2px 2px 0 var(--flavor-action-shadow);
+  padding: 9px 10px;
+}
+
+.flavorActions button:hover:not(:disabled) {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 var(--flavor-action-shadow);
+}
+
+.flavorActions button:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+.flavorActions button:disabled {
+  opacity: 1;
+}
+
+.flavorActionConfirm {
+  border-color: var(--flavor-confirm-border) !important;
+  background: var(--flavor-confirm-bg) !important;
+  color: var(--flavor-confirm-text) !important;
+  text-shadow: 1px 1px 0 var(--flavor-confirm-shadow-text);
+}
+
+.flavorActionConfirm:disabled {
+  border-color: var(--flavor-confirm-disabled-border) !important;
+  background: var(--flavor-confirm-disabled-bg) !important;
+  color: var(--flavor-confirm-disabled-text) !important;
+  text-shadow: none;
+}
+
+.flavorActionCancel {
+  border-color: var(--flavor-cancel-border) !important;
+  background: var(--flavor-cancel-bg) !important;
+  color: var(--flavor-cancel-text) !important;
+  text-shadow: 1px 1px 0 var(--flavor-cancel-shadow-text);
+}
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE DESIGN
+   ========================================================= */
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .production {
+    position: relative;
+    top: auto;
+  }
+
+  .cocada-stage {
+    aspect-ratio: 16 / 12;
+  }
+
+  .cocada-stage--bar {
+    aspect-ratio: auto;
+    min-height: 440px;
+  }
+}
+
+@media (max-width: 768px) {
+  .app {
+    padding: 12px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .top {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .card {
+    padding: 16px;
+  }
+
+  .stats-cocadas {
+    font-size: clamp(24px, 8vw, 36px);
+  }
+
+  .cocada-stage {
+    height: 240px;
+    aspect-ratio: auto;
+  }
+
+  .cocada-stage--bar {
+    height: auto;
+    min-height: 400px;
+    padding-top: 34px;
+  }
+
+  .cocada-stage img {
+    width: 160px;
+  }
+
+  .wood-sign {
+    width: min(92%, 380px);
+    transform: translateY(8px);
+    padding: 12px 8px 10px;
+  }
+
+  .bar-table {
+    height: 74px;
+  }
+
+  .flavorOptions {
+    grid-template-columns: 1fr;
+  }
+
+  .flavorActions {
+    flex-direction: column-reverse;
+  }
+
+  .flavorActions button {
+    max-width: none;
+  }
+}
+
+@media (max-width: 500px) {
+  .app {
+    padding: 8px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  .stats-cocadas {
+    font-size: clamp(22px, 9vw, 32px);
+  }
+
+  .card {
+    padding: 12px;
+  }
+
+  .card h2 {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+
+  .cocada-stage {
+    height: 200px;
+  }
+
+  .cocada-stage img {
+    width: 140px;
+  }
+
+  .cocada-stage--bar {
+    min-height: 360px;
+  }
+
+  .wood-sign {
+    width: min(95%, 330px);
+    transform: translateY(6px);
+  }
+
+  .bar-table {
+    height: 64px;
+  }
+
+  .meta {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  button {
+    padding: 9px 12px;
+    font-size: 12px;
+  }
+
+  .previewStats {
+    grid-template-columns: 1fr;
+  }
+
+  .flavorOptions {
+    gap: 10px;
+  }
+
+  .top {
+    gap: 8px;
+    padding: 12px;
+  }
+}
+
+/* =========================================================
+   8-BIT OVERRIDE: MENU DO BOTECO (PLACA DE MADEIRA)
+   ========================================================= */
+
+.beachMenu {
+  border: none;
+  border-radius: 0;
+  background: none;
+  padding: 0;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+/* Header - Placa de madeira */
+.beachMenuHeader {
+  margin-bottom: 10px;
+  padding: 14px 16px;
+  border: 4px solid #4a2f1a;
+  background:
+    repeating-linear-gradient(90deg, #8b5a3c 0 12px, #7d5234 12px 24px),
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.15) 0 2px, transparent 2px 8px);
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.3),
+    4px 4px 0 rgba(0, 0, 0, 0.4);
+  text-align: center;
+  position: relative;
+}
+
+/* Corda/correntes da placa */
+.beachMenuHeader::before,
+.beachMenuHeader::after {
+  content: "";
+  position: absolute;
+  top: -8px;
+  width: 6px;
+  height: 8px;
+  background: repeating-linear-gradient(90deg, #3d2214 0 2px, #2d1810 2px 4px);
+  border: 2px solid #2d1810;
+}
+
+.beachMenuHeader::before {
+  left: 20px;
+}
+
+.beachMenuHeader::after {
+  right: 20px;
+}
+
+.beachMenuHeader h3 {
+  font-family: var(--font-pixel);
+  font-size: 16px;
+  color: #ffeaa7;
+  text-shadow:
+    2px 2px 0 #3d2314,
+    1px 1px 0 rgba(0, 0, 0, 0.5);
+  margin: 0;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.beachMenuHeader p {
+  display: none;
+}
+
+/* Lista de cards */
+.beachMenuList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Card individual - Prancha de madeira */
+.beachMenuItem {
+  border: none;
+  border-radius: 0;
+  background: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 4px solid #6b4423;
+  background:
+    repeating-linear-gradient(90deg, #b8864e 0 12px, #a67d46 12px 24px),
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.08) 0 2px, transparent 2px 8px);
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.2),
+    3px 3px 0 rgba(0, 0, 0, 0.35);
+  transition: none;
+}
+
+.beachMenuItem:hover {
+  background:
+    repeating-linear-gradient(90deg, #c29658 0 12px, #b0854e 12px 24px),
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.08) 0 2px, transparent 2px 8px);
+}
+
+/* Item bloqueado - Madeira escura */
+.beachMenuItem--blocked {
+  border-color: #3d2f27;
+  background:
+    repeating-linear-gradient(90deg, #4a3e36 0 12px, #42362e 12px 24px),
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.15) 0 2px, transparent 2px 8px);
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.05),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.3),
+    3px 3px 0 rgba(0, 0, 0, 0.3);
+}
+
+.beachMenuItem--blocked:hover {
+  background:
+    repeating-linear-gradient(90deg, #4a3e36 0 12px, #42362e 12px 24px),
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.15) 0 2px, transparent 2px 8px);
+}
+
+.beachMenuItem--blocked .beachMenuName {
+  color: #6b5d55;
+}
+
+.beachMenuItem--blocked .beachMenuCost strong {
+  color: #d04545;
+}
+
+.beachMenuItem--blocked .beachMenuOwned {
+  color: #5a4e47;
+}
+
+.beachMenuItem--blocked .beachMenuIcon {
+  filter: brightness(0.4) grayscale(60%);
+}
+
+/* Item disponível - Madeira clara/dourada */
+.beachMenuItem--available {
+  border-color: #8b5a3c;
+}
+
+/* Animação de compra */
+.beachMenuItem--justBought {
+  animation: woodShake 0.4s steps(4, end);
+}
+
+.beachMenuItem--lootbox {
+  border-color: #f4c266;
+  background:
+    repeating-linear-gradient(90deg, #d6a352 0 12px, #c79547 12px 24px),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.14) 0 2px, transparent 2px 8px);
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.25),
+    0 0 0 2px rgba(244, 194, 102, 0.35),
+    4px 4px 0 rgba(0, 0, 0, 0.35);
+}
+
+.beachMenuItem--lootbox::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border: 1px dashed rgba(255, 233, 168, 0.6);
+  pointer-events: none;
+}
+
+.lootboxBadge {
+  margin-left: 8px;
+  padding: 2px 6px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: #2b1b07;
+  background: linear-gradient(135deg, #ffe29a, #f3c35c);
+  border: 1px solid #5b3a10;
+  border-radius: 6px;
+  vertical-align: middle;
+}
+
+.lootboxCost {
+  color: #ffe29a;
+  font-weight: 700;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.35);
+}
+
+.shopItem--lootbox {
+  border-color: #f4c266;
+  background:
+    linear-gradient(180deg, rgba(255, 226, 154, 0.08), rgba(255, 226, 154, 0.02)),
+    rgba(255, 255, 255, 0.02);
+  box-shadow:
+    0 0 0 2px rgba(244, 194, 102, 0.2),
+    var(--shadow-sm);
+}
+
+.shopItem--lootbox .shopTitle,
+.shopItem--lootbox .shopEffect {
+  color: #ffe29a;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
+}
+
+@keyframes woodShake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-2px);
+  }
+  75% {
+    transform: translateX(2px);
+  }
+}
+
+/* Ícone */
+.beachMenuIconWrap {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  border-radius: 0;
+  border: 3px solid #4a2f1a;
+  background: repeating-linear-gradient(45deg, #2d1810 0 4px, #3d2314 4px 8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    inset 0 2px 0 rgba(0, 0, 0, 0.3),
+    2px 2px 0 rgba(0, 0, 0, 0.25);
+}
+
+.beachMenuIcon {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+/* Área de informações (nome, preço, comprados) */
+.beachMenuInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.beachMenuName {
+  font-family: var(--font-pixel);
+  font-size: 14px;
+  color: #ffeaa7;
+  text-shadow:
+    2px 2px 0 #3d2314,
+    1px 1px 0 rgba(0, 0, 0, 0.5);
+  margin: 0;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.beachMenuDetails {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.beachMenuCost {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  color: #d4a574;
+  text-shadow: 1px 1px 0 #2d1810;
+}
+
+.beachMenuCost strong {
+  font-size: 13px;
+  color: #ffe082;
+  text-shadow:
+    1px 1px 0 #8b6914,
+    2px 2px 0 rgba(0, 0, 0, 0.4);
+}
+
+.beachMenuItem--blocked .beachMenuCost strong {
+  color: #d04545;
+  text-shadow:
+    1px 1px 0 #6b1a1a,
+    2px 2px 0 rgba(0, 0, 0, 0.4);
+}
+
+.beachMenuOwned {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  color: #d4a574;
+  text-shadow: 1px 1px 0 #2d1810;
+  letter-spacing: 0.3px;
+}
+
+/* Botão COMPRAR - Estilo verde boteco */
+.beachMenuBuyBtn {
+  flex-shrink: 0;
+  min-width: 90px;
+  padding: 10px 14px;
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  border-radius: 0;
+  border: 3px solid #2e7d32;
+  background:
+    repeating-linear-gradient(90deg, #4caf50 0 8px, #43a047 8px 16px),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.15) 0 1px, transparent 1px 4px);
+  color: #fff;
+  text-shadow:
+    1px 1px 0 #1b5e20,
+    2px 2px 0 rgba(0, 0, 0, 0.3);
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.2),
+    3px 3px 0 rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: none;
+  text-transform: uppercase;
+}
+
+.beachMenuBuyBtn:hover:not(:disabled) {
+  background:
+    repeating-linear-gradient(90deg, #66bb6a 0 8px, #5cb860 8px 16px),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.15) 0 1px, transparent 1px 4px);
+  transform: translate(1px, 1px);
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.2),
+    2px 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+.beachMenuBuyBtn:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow:
+    inset 0 2px 0 rgba(0, 0, 0, 0.1),
+    1px 1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.beachMenuBuyBtn:disabled {
+  border-color: #5a4e47;
+  background:
+    repeating-linear-gradient(90deg, #6b5d55 0 8px, #5f534b 8px 16px),
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.1) 0 1px, transparent 1px 4px);
+  color: #8b7a72;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.05),
+    2px 2px 0 rgba(0, 0, 0, 0.2);
+  cursor: not-allowed;
+}
+
+/* Tooltip de estrutura (hover) */
+.buildingHoverTooltip {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  animation: tooltipFadeIn 0.2s ease-out;
+}
+
+.buildingHoverTooltipContent {
+  background: linear-gradient(135deg, rgb(28, 28, 34), rgb(23, 23, 29));
+  border: 3px solid rgba(198, 152, 89, 0.8);
+  border-radius: 8px;
+  min-width: 320px;
+  padding: 14px 16px;
+  box-shadow:
+    0 6px 14px rgba(0, 0, 0, 0.42),
+    0 0 0 1px rgba(198, 152, 89, 0.5) inset;
+  text-rendering: geometricPrecision;
+}
+
+.buildingHoverTooltipTop {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+  align-items: flex-start;
+}
+
+.buildingHoverTooltipIcon {
+  width: 52px;
+  height: 52px;
+  flex: 0 0 52px;
+  border: 1px solid rgba(198, 152, 89, 0.5);
+  border-radius: 4px;
+  background: rgba(198, 152, 89, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+}
+
+.buildingHoverTooltipIcon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.buildingHoverTooltipHeading {
+  min-width: 0;
+}
+
+.buildingHoverTooltipTitle {
+  margin: 0 0 3px;
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(255, 240, 214, 1);
+  line-height: 1.3;
+  text-shadow: none;
+}
+
+.buildingHoverTooltipDescription {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgba(255, 240, 214, 0.96);
+  text-shadow: none;
+}
+
+.buildingHoverTooltipCostBadge {
+  background: rgba(198, 152, 89, 0.3);
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(212, 167, 101, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid rgba(198, 152, 89, 0.5);
+  margin-bottom: 10px;
+}
+
+.buildingHoverTooltipCostLabel {
+  font-weight: 700;
+  color: rgba(198, 152, 89, 0.9);
+}
+
+.buildingHoverTooltipStats {
+  border-top: 1px solid rgba(198, 152, 89, 0.3);
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.buildingHoverTooltipStatRow {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.buildingHoverTooltipLabel {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  letter-spacing: 0.6px;
+  color: rgba(198, 152, 89, 0.8);
+  text-transform: uppercase;
+  text-shadow: none;
+}
+
+.buildingHoverTooltipValue {
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255, 240, 214, 0.96);
+  line-height: 1.3;
+  text-shadow: none;
+}
+
+.buildingHoverTooltipStatRow--production .buildingHoverTooltipLabel {
+  color: rgba(118, 215, 162, 0.9);
+}
+
+.buildingHoverTooltipStatRow--production .buildingHoverTooltipValue {
+  color: rgba(152, 234, 186, 0.96);
+}
+
+.buildingHoverTooltipStatRow--produced .buildingHoverTooltipLabel {
+  color: rgba(164, 198, 224, 0.9);
+}
+
+.buildingHoverTooltipStatRow--produced .buildingHoverTooltipValue {
+  color: rgba(193, 222, 244, 0.95);
+}
+
+/* Responsivo */
+@media (max-width: 720px) {
+  .beachMenuItem {
+    padding: 8px 10px;
+    gap: 10px;
+  }
+
+  .beachMenuIconWrap {
+    width: 48px;
+    height: 48px;
+  }
+
+  .beachMenuIcon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .beachMenuName {
+    font-size: 12px;
+  }
+
+  .beachMenuCost {
+    font-size: 10px;
+  }
+
+  .beachMenuCost strong {
+    font-size: 11px;
+  }
+
+  .beachMenuOwned {
+    font-size: 9px;
+  }
+
+  .beachMenuBuyBtn {
+    min-width: 75px;
+    padding: 8px 10px;
+    font-size: 10px;
+  }
+
+  .beachMenuDetails {
+    gap: 8px;
+  }
+}
+
+/* =========================================================
+   SISTEMA DE NÍVEL
+   ========================================================= */
+
+.level-section {
+  padding: 12px 16px;
+  background: rgba(255, 107, 91, 0.08);
+  border-bottom: 2px solid var(--primary);
+  margin-bottom: 12px;
+  display: none; /* Escondido - barra agora está abaixo do flavor */
+}
+
+.level-display {
+  display: none; /* Component refatorado, estilos movidos */
+}
+
+/* =========================================================
+   SISTEMA DE NÍVEL - BARRA DE XP PIXEL ART
+   ========================================================= */
+
+.xp-bar-wrapper {
+  width: 100%;
+  margin-top: 6px;
+}
+
+.xp-bar-background {
+  width: 100%;
+  height: 16px;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.4) 0px,
+    rgba(0, 0, 0, 0.4) 14px,
+    rgba(0, 0, 0, 0.2) 14px,
+    rgba(0, 0, 0, 0.2) 16px
+  );
+  border: 2px solid #222;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+}
+
+.xp-bar-fill {
+  height: 100%;
+  background: repeating-linear-gradient(
+    90deg,
+    #00ff00 0px,
+    #00ff00 14px,
+    #00cc00 14px,
+    #00cc00 16px
+  );
+  width: 0%;
+  transition: width 0.3s ease;
+  box-shadow:
+    inset 0 0 4px rgba(255, 255, 255, 0.4),
+    0 0 8px rgba(0, 255, 0, 0.8);
+}
+
+/* ===== LEVEL & XP DISPLAY ===== */
+
+.levelXpSection {
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+  margin-top: 8px;
+}
+
+.xp-display-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.xp-info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 0 4px;
+}
+
+.xp-level-text {
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--primary);
+  font-family: var(--font-pixel);
+  letter-spacing: 0.5px;
+}
+
+.xp-value-text {
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-family: var(--font-pixel);
+  letter-spacing: 0.3px;
+}
+
+.xp-max-text {
+  font-size: 12px;
+  color: var(--accent);
+  font-weight: bold;
+  text-align: center;
+  font-family: var(--font-pixel);
+  letter-spacing: 0.5px;
+  padding: 6px;
+}
+
+/* Old styles - kept for reference but disabled */
+.level-header {
+  display: none;
+}
+
+.level-number {
+  display: none;
+}
+
+.level-badge {
+  display: none;
+}
+
+.level-badge.max {
+  display: none;
+}
+
+.xp-bar-container {
+  display: none;
+}
+
+.xp-text {
+  display: none;
+}
+
+.xp-text.max-level {
+  display: none;
+}
+
+/* ===== NOTIFICAÇÃO DE LEVEL UP ===== */
+
+.level-up-notification {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  z-index: 9999;
+  opacity: 0;
+  animation: levelUpPop 3s ease forwards;
+  pointer-events: none;
+}
+
+.level-up-notification.active {
+  animation: levelUpPop 3s ease forwards;
+}
+
+@keyframes levelUpPop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  80% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+}
+
+.level-up-content {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  border: 3px solid var(--text);
+  border-radius: 16px;
+  padding: 24px 32px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+  min-width: 280px;
+}
+
+.level-up-text {
+  font-size: 28px;
+  font-weight: bold;
+  color: white;
+  font-family: var(--font-pixel);
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin-bottom: 8px;
+}
+
+.level-up-subtitle {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: var(--font-pixel);
+  letter-spacing: 1px;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* =========================================================
+   SISTEMA DE LOOTBOX
+   ========================================================= */
+
+.lootboxSection {
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+  margin-top: 8px;
+}
+
+.lootbox-btn {
+  width: 100%;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #ff6b5b 0%, #ffb347 100%);
+  border: 2px solid #ffd700;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  font-family: var(--font-pixel);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(255, 107, 91, 0.4);
+  letter-spacing: 0.5px;
+}
+
+.lootbox-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 107, 91, 0.6);
+}
+
+.lootbox-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.lootbox-btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ===== MODAL DE LOOTBOX ===== */
+
+.lootbox-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 25, 41, 0.95);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.3s ease;
+}
+
+.lootbox-modal-overlay.fade-out {
+  animation: fadeOut 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.lootbox-modal {
+  position: relative;
+  width: 90%;
+  max-width: 600px;
+  height: 600px;
+  background: linear-gradient(180deg, #87ceeb 0%, #e0f6ff 100%);
+  border: 4px solid #ffb347;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 0 40px rgba(255, 179, 71, 0.6);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+/* CENÁRIO TROPICAL */
+
+.lootbox-scene {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #87ceeb 0%, #e0f6ff 50%, #f4a460 100%);
+  border-radius: 12px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    #f5deb3 0px,
+    #f5deb3 20px,
+    #edc9af 20px,
+    #edc9af 40px
+  );
+}
+
+/* PALMEIRAS */
+
+.palm {
+  position: absolute;
+  bottom: 0;
+  width: 60px;
+  height: 140px;
+  pointer-events: none;
+}
+
+.palm-left {
+  left: 20px;
+  background: linear-gradient(135deg, #228b22 0%, #32cd32 50%, #228b22 100%);
+  clip-path: polygon(
+    50% 0%,
+    60% 20%,
+    70% 15%,
+    75% 35%,
+    80% 30%,
+    85% 50%,
+    80% 45%,
+    70% 65%,
+    75% 60%,
+    70% 75%,
+    65% 70%,
+    55% 85%,
+    50% 80%,
+    45% 90%,
+    40% 85%,
+    30% 75%,
+    35% 65%,
+    25% 70%,
+    20% 50%,
+    25% 55%,
+    20% 35%,
+    30% 40%,
+    25% 20%,
+    40% 25%
+  );
+}
+
+.palm-right {
+  right: 20px;
+  background: linear-gradient(45deg, #228b22 0%, #32cd32 50%, #228b22 100%);
+  clip-path: polygon(
+    50% 0%,
+    40% 20%,
+    30% 15%,
+    25% 35%,
+    20% 30%,
+    15% 50%,
+    20% 45%,
+    30% 65%,
+    25% 60%,
+    30% 75%,
+    35% 70%,
+    45% 85%,
+    50% 80%,
+    55% 90%,
+    60% 85%,
+    70% 75%,
+    65% 65%,
+    75% 70%,
+    80% 50%,
+    75% 55%,
+    80% 35%,
+    70% 40%,
+    75% 20%,
+    60% 25%
+  );
+}
+
+/* AREIA */
+
+.sand-layer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30%;
+  background: repeating-linear-gradient(45deg, #f5deb3, #f5deb3 10px, #edc9af 10px, #edc9af 20px);
+  opacity: 0.8;
+}
+
+/* COCO CONTAINER */
+
+.coco-container {
+  position: relative;
+  width: 120px;
+  height: 140px;
+  perspectives: 1000px;
+}
+
+.coco-container.cracking {
+  animation: cocoShake 0.5s ease-in-out infinite;
+}
+
+@keyframes cocoShake {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-2deg);
+  }
+  75% {
+    transform: rotate(2deg);
+  }
+}
+
+.coco {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at 35% 35%, #8b7355, #5c4033);
+  border-radius: 50% 50% 45% 45%;
+  border: 3px solid #ffb347;
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    inset -10px -10px 20px rgba(0, 0, 0, 0.5),
+    5px 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.coco::before {
+  content: "";
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  width: 30%;
+  height: 30%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent);
+  border-radius: 50%;
+}
+
+.coco.cracking::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(120deg, transparent 30%, rgba(0, 0, 0, 0.2) 50%, transparent 70%),
+    linear-gradient(240deg, transparent 30%, rgba(0, 0, 0, 0.2) 50%, transparent 70%);
+  animation: crackPulse 0.5s ease-in-out;
+}
+
+@keyframes crackPulse {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* PARTÍCULAS */
+
+.particles-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  animation: particleFloat var(--duration, 1.5s) ease-out forwards;
+  animation-delay: var(--delay);
+}
+
+.particle-1 {
+  width: 8px;
+  height: 8px;
+  background: #f5deb3;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+}
+
+.particle-2 {
+  width: 6px;
+  height: 10px;
+  background: #edc9af;
+  border-radius: 3px;
+  top: 50%;
+  left: 50%;
+}
+
+.particle-3 {
+  width: 4px;
+  height: 4px;
+  background: #d4af37;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+}
+
+@keyframes particleFloat {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(calc((random(200) - 100) * 1px), calc((random(-200) - 100) * 1px)) scale(0);
+    opacity: 0;
+  }
+}
+
+/* CONFETES PARA RARIDADES ALTAS */
+
+.confetti-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.confetti {
+  position: absolute;
+  animation: confettiDrop var(--duration) ease-in forwards;
+  animation-delay: var(--delay);
+  top: -10px;
+}
+
+.confetti-1 {
+  width: 10px;
+  height: 10px;
+  background: #ffd700;
+  left: 10%;
+}
+
+.confetti-2 {
+  width: 8px;
+  height: 12px;
+  background: #ff1493;
+  left: 30%;
+}
+
+.confetti-3 {
+  width: 12px;
+  height: 8px;
+  background: #00ced1;
+  left: 60%;
+}
+
+.confetti-4 {
+  width: 10px;
+  height: 10px;
+  background: #32cd32;
+  left: 80%;
+}
+
+@keyframes confettiDrop {
+  0% {
+    transform: translateY(0) rotateZ(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(400px) rotateZ(720deg);
+    opacity: 0;
+  }
+}
+
+/* BRILHO AO REVELAR */
+
+.shine-effect {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.shine-1,
+.shine-2,
+.shine-3,
+.shine-4,
+.shine-5 {
+  animation: shineFlash 0.8s ease-out;
+}
+
+@keyframes shineFlash {
+  0% {
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, transparent 70%);
+    opacity: 1;
+  }
+  100% {
+    background: radial-gradient(circle, rgba(255, 255, 255, 0) 0%, transparent 70%);
+    opacity: 0;
+  }
+}
+
+/* EXIBIÇÃO DE RECOMPENSA */
+
+.reward-display {
+  padding: 16px;
+  border-radius: 8px;
+  text-align: center;
+  animation: slideUp 0.5s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reward-common {
+  background: rgba(0, 200, 100, 0.25);
+  border: 3px solid #00cc88;
+}
+
+.reward-uncommon {
+  background: rgba(139, 69, 19, 0.3);
+  border: 3px solid #a0522d;
+}
+
+.reward-rare {
+  background: rgba(255, 140, 0, 0.3);
+  border: 3px solid #ff8c00;
+}
+
+.reward-epic {
+  background: rgba(200, 50, 200, 0.3);
+  border: 3px solid #da70d6;
+}
+
+.reward-legendary {
+  background: rgba(255, 200, 0, 0.3);
+  border: 3px solid #ffd700;
+}
+
+.rarity-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.rarity-emoji {
+  font-size: 24px;
+}
+
+.rarity-name {
+  font-size: 16px;
+  font-weight: bold;
+  color: #1a1a1a;
+  font-family: var(--font-pixel);
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.reward-content {
+  margin: 12px 0;
+}
+
+.reward-text {
+  font-size: 14px;
+  color: #0d0d0d;
+  font-family: var(--font-pixel);
+  line-height: 1.6;
+  letter-spacing: 0.5px;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+.close-btn {
+  margin-top: 12px;
+  padding: 8px 16px;
+  background: var(--primary);
+  border: 2px solid var(--primary-light);
+  color: white;
+  border-radius: 6px;
+  font-weight: bold;
+  font-family: var(--font-pixel);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.5px;
+}
+
+.close-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(255, 107, 91, 0.6);
+}
+
+.close-btn:active {
+  transform: scale(0.95);
+}
+
+.lootbox-opening-text {
+  text-align: center;
+  font-size: 18px;
+  color: var(--text);
+  font-family: var(--font-pixel);
+  animation: pulse 1s ease-in-out infinite;
+  letter-spacing: 1px;
+}
+
+/* COCO ALEATÓRIO */
+
+@keyframes cocoAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes cocoBob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.random-coco {
+  filter: drop-shadow(0 0 8px rgba(255, 200, 0, 0.8));
+}
+
+/* =========================================================
+   PLAYER STATS MODAL (8-BIT)
+   ========================================================= */
+
+.stats-open-button {
+  min-width: 146px;
+}
+
+.player-stats-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 3200;
+  display: grid;
+  place-items: center;
+  padding: 14px;
+}
+
+.player-stats-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(4, 10, 16, 0.86);
+}
+
+.player-stats-window {
+  position: relative;
+  width: min(900px, 100%);
+  max-height: min(86vh, 760px);
+  display: flex;
+  flex-direction: column;
+  border: 4px solid #89d4ff;
+  border-radius: 0;
+  background:
+    repeating-linear-gradient(0deg, #0d1f30 0 6px, #112638 6px 12px),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.06) 0 1px,
+      rgba(255, 255, 255, 0) 1px 3px
+    );
+  box-shadow:
+    0 0 0 4px #1c4d6f,
+    0 0 0 8px #0a1a27;
+  color: #e9f6ff;
+  font-family: var(--font-pixel);
+}
+
+.player-stats-header {
+  border-bottom: 4px solid #1c4d6f;
+  padding: 14px 16px;
+  text-align: center;
+  background: repeating-linear-gradient(90deg, #17435d 0 8px, #13394f 8px 16px);
+}
+
+.player-stats-header h2 {
+  margin: 0;
+  font-size: 13px;
+  letter-spacing: 1.2px;
+  color: #f3fbff;
+  text-transform: uppercase;
+}
+
+.player-stats-content {
+  overflow-y: auto;
+  padding: 12px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.player-stats-section {
+  border: 3px solid #2c6f95;
+  background:
+    repeating-linear-gradient(0deg, #112536 0 5px, #0f2131 5px 10px),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.06) 0 1px,
+      rgba(255, 255, 255, 0) 1px 3px
+    );
+  padding: 10px;
+}
+
+.player-stats-section h3 {
+  margin: 0 0 8px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #2c6f95;
+  font-size: 10px;
+  color: #9ddcff;
+  letter-spacing: 1px;
+}
+
+.player-stats-rows,
+.player-stats-buildings {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.player-stats-buildings {
+  max-height: 210px;
+  overflow-y: auto;
+  padding-right: 2px;
+}
+
+.player-stats-row {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  font-size: 9px;
+  line-height: 1.55;
+}
+
+.player-stats-row span {
+  color: #cfeeff;
+}
+
+.player-stats-row strong {
+  color: #fff8cc;
+  font-weight: 700;
+  text-align: right;
+}
+
+.player-stats-footer {
+  border-top: 4px solid #1c4d6f;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  background: repeating-linear-gradient(90deg, #173f58 0 8px, #12354a 8px 16px);
+}
+
+.player-stats-toggle-advanced,
+.player-stats-close {
+  min-height: 34px;
+  border: 3px solid #89d4ff;
+  border-radius: 0;
+  background:
+    repeating-linear-gradient(90deg, #2f6285 0 8px, #295978 8px 16px),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.12) 0 1px, rgba(255, 255, 255, 0) 1px 4px);
+  color: #f2fbff;
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.player-stats-toggle-advanced:hover,
+.player-stats-close:hover {
+  transform: translate(1px, 1px);
+}
+
+.player-stats-toggle-advanced:active,
+.player-stats-close:active {
+  transform: translate(2px, 2px);
+}
+
+.achievements-open-button {
+  min-width: 132px;
+}
+
+.achievements-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 3300;
+  display: grid;
+  place-items: center;
+  padding: 14px;
+}
+
+.achievements-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 8, 12, 0.85);
+}
+
+.achievements-window {
+  position: relative;
+  width: min(920px, 100%);
+  max-height: 86vh;
+  border: 4px solid #90dcff;
+  background:
+    repeating-linear-gradient(0deg, #0d1e2d 0 6px, #112434 6px 12px),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.06) 0 1px,
+      rgba(255, 255, 255, 0) 1px 3px
+    );
+  box-shadow:
+    0 0 0 4px #1b4d6f,
+    0 0 0 8px #0b1b29;
+  display: flex;
+  flex-direction: column;
+}
+
+.achievements-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 4px solid #1b4d6f;
+  padding: 12px 14px;
+  background: repeating-linear-gradient(90deg, #163f58 0 8px, #12384d 8px 16px);
+}
+
+.achievements-header h2 {
+  margin: 0;
+  font-size: 12px;
+  font-family: var(--font-pixel);
+  color: #f2fbff;
+  letter-spacing: 1px;
+}
+
+.achievements-header span {
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  color: #ffd98c;
+}
+
+.achievements-content {
+  overflow-y: auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.achievements-category {
+  border: 3px solid #2b6e94;
+  padding: 10px;
+  background:
+    repeating-linear-gradient(0deg, #112538 0 5px, #0f2234 5px 10px),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.05) 0 1px,
+      rgba(255, 255, 255, 0) 1px 3px
+    );
+}
+
+.achievements-category h3 {
+  margin: 0 0 8px;
+  border-bottom: 2px solid #2b6e94;
+  padding-bottom: 6px;
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: #9ad7fa;
+}
+
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.achievement-card {
+  border: 2px solid #2f6585;
+  background: #0d2233;
+  min-height: 66px;
+  padding: 8px;
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  gap: 8px;
+  align-items: start;
+  font-family: var(--font-pixel);
+}
+
+.achievement-card-icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.achievement-card-icon-image {
+  width: 16px;
+  height: 16px;
+  image-rendering: pixelated;
+}
+
+.achievement-card-icon-fallback {
+  font-size: 13px;
+  line-height: 1;
+}
+
+.achievement-card-text strong {
+  display: block;
+  font-size: 9px;
+  color: #f3fbff;
+  margin-bottom: 4px;
+}
+
+.achievement-card-text p {
+  margin: 0;
+  font-size: 8px;
+  line-height: 1.5;
+  color: #c9e5f7;
+}
+
+.achievement-card--locked {
+  border-color: #365568;
+  background: #10202e;
+}
+
+.achievement-card--locked .achievement-card-text strong,
+.achievement-card--locked .achievement-card-text p {
+  color: #9bb6c9;
+}
+
+.achievement-card--locked .achievement-card-icon-image {
+  filter: grayscale(1) brightness(0.8);
+  opacity: 0.85;
+}
+
+.achievement-card--unlocked {
+  border-color: #8fdcff;
+}
+
+.achievements-footer {
+  border-top: 4px solid #1b4d6f;
+  padding: 10px 12px;
+  display: flex;
+  justify-content: flex-end;
+  background: repeating-linear-gradient(90deg, #163e56 0 8px, #123749 8px 16px);
+}
+
+.achievements-close {
+  min-height: 34px;
+  border: 3px solid #8fdcff;
+  background:
+    repeating-linear-gradient(90deg, #2f6488 0 8px, #285b79 8px 16px),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.12) 0 1px, rgba(255, 255, 255, 0) 1px 4px);
+  color: #f2fbff;
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  text-transform: uppercase;
+  border-radius: 0;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.achievement-toast {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 3600;
+  width: min(320px, calc(100% - 24px));
+  border: 4px solid #f4d485;
+  background:
+    repeating-linear-gradient(0deg, #1c2c1a 0 6px, #182617 6px 12px),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.08) 0 1px,
+      rgba(255, 255, 255, 0) 1px 3px
+    );
+  box-shadow:
+    0 0 0 4px #7a6432,
+    0 0 0 8px #342a16;
+  padding: 10px 12px;
+  font-family: var(--font-pixel);
+  animation: achievementToastEnter 0.15s steps(3, end);
+}
+
+.achievement-toast-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 6px;
+}
+
+.achievement-toast-icon {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.achievement-toast-icon-image {
+  width: 16px;
+  height: 16px;
+  image-rendering: pixelated;
+}
+
+.achievement-toast-icon-fallback {
+  font-size: 13px;
+  line-height: 1;
+}
+
+.achievement-toast-title {
+  margin: 0;
+  color: #ffe6a5;
+  font-size: 10px;
+  letter-spacing: 0.7px;
+}
+
+.achievement-toast-name {
+  margin: 0;
+  color: #f7fff2;
+  font-size: 9px;
+}
+
+.achievement-toast-description {
+  margin: 6px 0 0;
+  color: #cde4c8;
+  font-size: 8px;
+  line-height: 1.45;
+}
+
+@keyframes achievementToastEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 900px) {
+  .player-stats-content {
+    grid-template-columns: 1fr;
+  }
+
+  .player-stats-footer {
+    flex-direction: column;
+  }
+
+  .player-stats-toggle-advanced,
+  .player-stats-close {
+    width: 100%;
+  }
+
+  .achievements-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .stats-open-button {
+    min-width: 120px;
+    padding: 0 8px;
+    font-size: 10px;
+  }
+
+  .player-stats-window {
+    max-height: 92vh;
+  }
+
+  .player-stats-header h2 {
+    font-size: 11px;
+  }
+
+  .player-stats-row {
+    font-size: 8px;
+  }
+
+  .achievements-open-button {
+    min-width: 108px;
+    font-size: 9px;
+  }
+
+  .achievement-toast {
+    right: 8px;
+    left: 8px;
+    width: auto;
+    bottom: 8px;
+  }
+}
+
+/* =========================================================
+   COOKIE-INSPIRED READABILITY TUNING
+   ========================================================= */
+
+:root {
+  --read-base-size: clamp(15px, 0.3vw + 13px, 18px);
+  --read-ui-small: clamp(10px, 0.2vw + 9px, 12px);
+  --read-ui-medium: clamp(12px, 0.2vw + 11px, 14px);
+}
+
+body {
+  font-size: var(--read-base-size);
+  line-height: 1.6;
+}
+
+.app {
+  max-width: 1320px;
+  padding: clamp(14px, 2vw, 28px);
+}
+
+.grid {
+  grid-template-columns: 1fr 460px;
+}
+
+.subtitle,
+button,
+.small,
+.badgeContent {
+  font-size: var(--read-ui-medium);
+}
+
+.btn-options,
+.save-options-menu .options-section-title,
+.save-options-menu .save-status .status-text,
+.save-options-menu .options-action,
+.save-options-menu .options-action--format,
+.beachMenuOwned {
+  font-size: var(--read-ui-small);
+}
+
+.save-options-menu {
+  min-width: 220px;
+}
+
+.card {
+  padding: clamp(18px, 1.4vw, 24px);
+}
+
+.card h2 {
+  font-size: clamp(19px, 0.7vw + 15px, 24px);
+}
+
+.card h3 {
+  font-size: clamp(14px, 0.4vw + 12px, 17px);
+}
+
+.stats-display {
+  font-size: clamp(12px, 1.4vw, 16px);
+}
+
+.player-stats-header h2 {
+  font-size: 14px;
+}
+
+.player-stats-section h3 {
+  font-size: 11px;
+}
+
+.player-stats-row {
+  font-size: 11px;
+}
+
+.player-stats-toggle-advanced,
+.player-stats-close,
+.achievements-close {
+  font-size: 10px;
+}
+
+.achievements-header h2 {
+  font-size: 13px;
+}
+
+.achievements-header span,
+.achievements-category h3,
+.achievement-card-text strong,
+.achievement-toast-name {
+  font-size: 10px;
+}
+
+.achievement-card-text p,
+.achievement-toast-description {
+  font-size: 9px;
+}
+
+.achievement-toast-title {
+  font-size: 11px;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 720px) {
+  .beachMenuName {
+    font-size: 13px;
+  }
+
+  .beachMenuCost {
+    font-size: 11px;
+  }
+
+  .beachMenuCost strong {
+    font-size: 12px;
+  }
+
+  .beachMenuOwned {
+    font-size: 10px;
+  }
+
+  .beachMenuBuyBtn {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 600px) {
+  .stats-open-button {
+    font-size: 11px;
+  }
+
+  .player-stats-header h2 {
+    font-size: 12px;
+  }
+
+  .player-stats-row {
+    font-size: 10px;
+  }
+
+  .achievements-open-button {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 500px) {
+  h1 {
+    font-size: 24px;
+  }
+
+  .card h2 {
+    font-size: 18px;
+  }
+}
+
+/* =========================================================
+   PUBLICPIXEL METRICS TUNING
+   ========================================================= */
+
+.btn-options {
+  min-width: 112px;
+  height: 34px;
+  padding: 0 10px;
+  letter-spacing: 0.2px;
+  line-height: 1.2;
+}
+
+.save-options-menu {
+  min-width: 236px;
+}
+
+.save-options-menu .options-section-title,
+.save-options-menu .save-status .status-text,
+.save-options-menu .options-action,
+.save-options-menu .options-action--format,
+.stats-open-button,
+.achievements-open-button,
+.player-stats-toggle-advanced,
+.player-stats-close,
+.achievements-close,
+.achievement-toast-title,
+.achievement-toast-name,
+.achievement-toast-description {
+  letter-spacing: 0.1px;
+  line-height: 1.4;
+}
+
+.achievement-card-text strong,
+.achievement-card-text p,
+.player-stats-row {
+  line-height: 1.6;
+}
+
+/* =========================================================
+   PRINT STYLES
+   ========================================================= */
+
+@media print {
+  body {
+    background: white;
+  }
+
+  .meta,
+  button {
+    display: none;
+  }
+}

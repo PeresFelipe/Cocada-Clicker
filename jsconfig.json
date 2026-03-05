@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@core/*": ["js/*"]
+    },
+    "allowJs": true,
+    "checkJs": false,
+    "forceConsistentCasingInFileNames": false
+  },
+  "include": ["src/**/*.js", "src/**/*.jsx", "js/**/*.js", "vite.config.js"]
+}
